@@ -1,0 +1,6 @@
+main: br.com.iagofragnan.main
+name: N3rdyTesouro
+author: Iago F.
+description: Plugin para exposição da Expotec 2024, envolvendo um Caça ao Tesouro utilizando um Arduino como "bussula"
+version: 1.0.0
+website: github.com/iagof-dev/

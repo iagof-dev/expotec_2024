@@ -1,0 +1,11 @@
+#	IGNORAR TUDO:
+*
+
+
+# EXCETO:
+!.gitignore 
+!bukkit.yml
+!server.properties
+!spigot.ym
+!/plugins/
+!/plugins/*

@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  paperspigot:
+    image: itzg/minecraft-server
+    environment:
+      TYPE: PAPER
+      VERSION: 1.12.2
+      MEMORY: 2G
+      EULA: "TRUE"
+    ports:
+      - "25565:25565"
+    volumes:
+      - ./server:/data
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: N3rdygamerbr@123
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
