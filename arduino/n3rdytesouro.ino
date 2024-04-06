@@ -1,69 +1,92 @@
-void setup() {
-  Serial.begin(9600);
-  pinMode(5, OUTPUT);
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
+char last_cmd = "-1";
 
-  // Desliga todos os pinos no início
+//PINOS
+int LED_R = 2;
+int LED_G = 3;
+int LED_O = 4;
+
+int buzzer = 5;
+int final_delay = 300;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(LED_R, OUTPUT);
+  pinMode(LED_G, OUTPUT);
+  pinMode(LED_O, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+
+  // Desligar tudo
   digitalWrite(2, LOW);
   digitalWrite(3, LOW);
   digitalWrite(4, LOW);
 }
 
-void loop() {
-  if (Serial.available() > 0) {
+void loop()
+{
+  if (Serial.available() > 0)
+  {
     char command = Serial.read();
-
-    // Limpa o buffer serial para garantir que apenas o último comando seja lido
-    while(Serial.available() > 0) {
+    last_cmd = command;
+    while (Serial.available() > 0)
+    {
       Serial.read();
     }
-
-    if (command != ' ' && command != -1) {
-      Serial.print("Comando:");
-      Serial.print(command);
-      Serial.println(" ");
-    }
-
-    digitalWrite(2, LOW);
-    digitalWrite(3, LOW);
-    digitalWrite(4, LOW);
-
-    if(command == '1') {
-      digitalWrite(4, HIGH);
-      digitalWrite(3, HIGH);
-      digitalWrite(2, HIGH);
-      tone(5, 950, 300);
-      delay(200);
-      digitalWrite(4, LOW);
-      digitalWrite(3, LOW);
-      digitalWrite(2, LOW);
-      delay(100);
-    } else if(command == '2') {
-      digitalWrite(4, HIGH);
-      tone(5, 950, 300);
-      delay(400);
-      digitalWrite(4, LOW);
-      delay(300);
-    } else if(command == '3') {
-      digitalWrite(3, HIGH);
-      tone(5, 950, 300);
-      delay(1000);
-      digitalWrite(3, LOW);
-    } else if(command == '4') {
-      digitalWrite(2, HIGH);
-      delay(1500);
-      digitalWrite(2, LOW);
-    } else if(command == 'T') {
-      digitalWrite(4, HIGH);
-      digitalWrite(3, HIGH);
-      digitalWrite(2, HIGH);
-    }else if(command == 'DA'){
-      digitalWrite(4, LOW);
-      digitalWrite(3, LOW);
-      digitalWrite(2, LOW);
-    }
-    delay(500);
   }
+
+  switch (last_cmd)
+  {
+    case 'D': //DISABLE ALL
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_O, LOW);
+      digitalWrite(LED_G, LOW);
+      final_delay = 300;
+      break;
+    
+    case 'W': //WIN
+      final_delay = 20;
+      digitalWrite(LED_G, HIGH);
+      tone(buzzer, 950, 150);
+      break;
+
+    case 'S': //SO CLOSE
+      digitalWrite(LED_R, HIGH);
+      digitalWrite(LED_G, HIGH);
+      digitalWrite(LED_O, HIGH);
+      tone(buzzer, 950, 150);
+      delay(100);
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_O, LOW);
+      digitalWrite(LED_G, LOW);
+      delay(50);
+      break;
+    case 'C': //CLOSE
+      digitalWrite(LED_G, HIGH);
+      tone(buzzer, 950, 300);
+      delay(200);
+      digitalWrite(LED_G, LOW);
+      delay(100);
+      break;
+    case 'M':
+      digitalWrite(LED_O, HIGH);
+      tone(buzzer, 950, 300);
+      delay(400);
+      digitalWrite(LED_O, LOW);
+      delay(300);
+      break;
+      
+    case 'F':
+      digitalWrite(LED_R, HIGH);
+      delay(1500);
+      digitalWrite(LED_R, LOW);
+      break;
+
+    case 'T': //teste
+      digitalWrite(LED_R, HIGH);
+      digitalWrite(LED_O, HIGH);
+      digitalWrite(LED_G, HIGH);
+      break;
+
+  }
+  delay(final_delay);
 }
