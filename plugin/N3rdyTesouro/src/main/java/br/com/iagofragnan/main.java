@@ -13,7 +13,8 @@ public class main extends JavaPlugin implements Listener {
     public void onEnable(){
         Bukkit.getConsoleSender().sendMessage("§aN3rdyTesouro | Inicializado!");
 
-        arduino.GetAllPorts();
+        arduino.VerifyConnection();
+        this.getCommand("test").setExecutor(new br.com.iagofragnan.commands.test());
 
 
     }
