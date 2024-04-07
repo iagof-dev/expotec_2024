@@ -9,4 +9,16 @@ commands:
   test:
     description: test command arduino debug
     usage: /test
+    permission: n3rdytesouro.test
+  debug:
+    description: test command arduino debug
+    usage: /debug [code]
     permission: n3rdytesouro.debug
+  start:
+    description: test command arduino debug
+    usage: /start
+    permission: n3rdytesouro.start
+  arena:
+    description: test command arduino debug
+    usage: /arena
+    permission: n3rdytesouro.arena
