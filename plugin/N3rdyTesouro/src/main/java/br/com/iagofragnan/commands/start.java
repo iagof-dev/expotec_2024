@@ -19,19 +19,19 @@ public class start implements CommandExecutor {
                 public void run() {
                     players.sendTitle("GitHub", ChatColor.GRAY + "github.com/iagof-dev/", 20, 20, 20);
                 }
-            }, 120L);
+            }, 150L);
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
                 public void run() {
                     players.sendTitle("LinkedIn", ChatColor.GRAY+"linkedin.com/in/iago-fragnan/", 20, 20, 20);
                 }
-            }, 150L);
+            }, 210L);
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
                 public void run() {
                     players.sendTitle("Portfolio", ChatColor.GRAY+"iagofragnan.com.br", 20, 20, 20);
                 }
-            }, 190L);
+            }, 270L);
 
 
 

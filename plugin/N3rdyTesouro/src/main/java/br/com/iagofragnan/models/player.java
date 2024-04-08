@@ -1,12 +1,28 @@
 package br.com.iagofragnan.models;
 
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+
 import java.sql.Time;
+import java.time.LocalTime;
 
 public class player {
 
+
+    private static Player obj_player;
+    private static World obj_world;
     private String player_name;
     private int chests;
-    private Time time;
+    private LocalTime StartTime;
+    private LocalTime EndTime;
+
+    public static World getObj_world() {
+        return obj_world;
+    }
+
+    public static void setObj_world(World new_obj_world) {
+        player.obj_world = new_obj_world;
+    }
 
 
     public String getPlayer_name() {
@@ -25,11 +41,24 @@ public class player {
         this.chests = chests;
     }
 
-    public Time getTime() {
-        return time;
+    public LocalTime getStartTime() {
+        return StartTime;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public void setStartTime(LocalTime time) {
+        this.StartTime = time;
+        this.EndTime = time.plusMinutes(5);
+    }
+
+    public static Player getObj_player() {
+        return obj_player;
+    }
+
+    public static void setObj_player(Player NewPlayer) {
+        obj_player = NewPlayer;
+    }
+
+    public LocalTime getEndTime() {
+        return EndTime;
     }
 }

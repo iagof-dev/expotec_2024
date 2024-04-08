@@ -1,5 +1,6 @@
 package br.com.iagofragnan.events;
 
+import br.com.iagofragnan.models.player;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -13,9 +14,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-public class pattern implements Listener {
+public class Pattern implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
+        player.setObj_player(e.getPlayer());
+        player.setObj_world(e.getPlayer().getWorld());
         e.getPlayer().getInventory().clear();
         e.getPlayer().setGameMode(GameMode.SURVIVAL);
         e.getPlayer().setFoodLevel(100);
@@ -57,8 +60,12 @@ public class pattern implements Listener {
 
     @EventHandler
     public void PlayerCommands(PlayerCommandPreprocessEvent e){
-        if(e.getPlayer().getGameMode() == GameMode.CREATIVE){ e.setCancelled(false); return;};
-        e.setCancelled(true);
+
+        //
+        //      DESCOMENTAR NO DIA DA EXPOTEC
+        //
+
+        //e.setCancelled(true);
     }
 
 }

@@ -1,24 +1,24 @@
 main: br.com.iagofragnan.main
 name: N3rdyTesouro
 author: Iago F.
-description: Plugin para exposição da Expotec 2024, envolvendo um Caça ao Tesouro utilizando um Arduino como "bussula"
+description: Plugin para exposição da Expotec 2024, envolvendo um Caça ao Tesouro utilizando um Arduino como b\u00fassola.
 version: 1.0.0
 website: github.com/iagof-dev/
 
 commands:
   test:
-    description: test command arduino debug
+    description: test arduino device with test signal
     usage: /test
     permission: n3rdytesouro.test
   debug:
-    description: test command arduino debug
+    description: test arduino device with custom signal to test
     usage: /debug [code]
     permission: n3rdytesouro.debug
   start:
-    description: test command arduino debug
+    description: start the minigame
     usage: /start
     permission: n3rdytesouro.start
   arena:
-    description: test command arduino debug
+    description: debug command to create arena
     usage: /arena
     permission: n3rdytesouro.arena

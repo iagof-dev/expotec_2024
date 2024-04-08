@@ -12,6 +12,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+import static br.com.iagofragnan.models.player.*;
+
 public class arduino {
 
     static SerialPort porta;
@@ -40,8 +42,8 @@ public class arduino {
 
         if(!ArduinoIsWorking){
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Arduino n\u00e3o encontrado/configurado, pulando funç\u00e3o...");
-            for(Player players : Bukkit.getServer().getOnlinePlayers())
-                players.sendTitle(ChatColor.RED + "Arduino n\u00e3o configurado", "Por favor verifique e reinicie o servidor", 5, 200, 5);
+                if(getObj_player() != null)
+                    getObj_player().sendTitle(ChatColor.RED + "Arduino n\u00e3o configurado", "Por favor verifique e reinicie o servidor", 5, 200, 5);
             return;
         }
 
@@ -63,8 +65,36 @@ public class arduino {
         Bukkit.getConsoleSender().sendMessage("Testando dispositivo na porta " + PortCOM);
         SendSignal(signal);
         Bukkit.getConsoleSender().sendMessage("Teste finalizado.");
+    }
 
+    public static void SendSignalByDistance(double distance){
+        String signal = "A";
+        if(distance <=1){
+            //W = WIN
+            signal = "W";
+        }
+        if(distance > 1 && distance <= 5){
+            //S = SO CLOSE
+            signal = "S";
+        }
+        if(distance > 5 && distance <= 8){
+            //C = CLOSE
+            signal = "C";
+        }
+        if(distance > 9 && distance <= 12){
+            //M = MEDIUM
+            signal = "M";
+        }
+        if(distance > 12 && distance <= 25){
+            //F = FAR
+            signal = "F";
+        }
+        if(distance > 25){
+            //D = DISABLE ALL
+            signal = "D";
+        }
 
+        arduino.SendSignal(signal);
     }
 
 

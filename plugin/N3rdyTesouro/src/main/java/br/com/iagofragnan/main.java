@@ -1,13 +1,13 @@
 package br.com.iagofragnan;
 
-import com.fazecast.jSerialComm.*;
+import br.com.iagofragnan.events.Pattern;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import br.com.iagofragnan.arduino;
+import org.bukkit.scheduler.BukkitRunnable;
+
 public class main extends JavaPlugin implements Listener {
 
 
@@ -19,7 +19,7 @@ public class main extends JavaPlugin implements Listener {
         Bukkit.getServer().getWorld("world").setStorm(false);
         Bukkit.getServer().getWorld("world").setTime(3000);
 
-        getServer().getPluginManager().registerEvents(new br.com.iagofragnan.events.pattern(), this);
+        getServer().getPluginManager().registerEvents(new Pattern(), this);
         getServer().getPluginManager().registerEvents(new br.com.iagofragnan.events.Treasure(), this);
 
         arduino.VerifyConnection();
@@ -28,6 +28,13 @@ public class main extends JavaPlugin implements Listener {
                 arduino.TestDevice();
             }
         }, 40L);
+
+        new BukkitRunnable(){
+            @Override
+            public void run(){
+                br.com.iagofragnan.events.OnTick.OnTickEvent();
+            }
+        }.runTaskTimer(this, 0L, 5L);
 
         this.getCommand("arena").setExecutor(new br.com.iagofragnan.commands.arena());
         this.getCommand("test").setExecutor(new br.com.iagofragnan.commands.test());

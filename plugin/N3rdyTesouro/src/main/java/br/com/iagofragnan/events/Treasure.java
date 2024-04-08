@@ -13,58 +13,20 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class Treasure implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void DetectTreasure(PlayerMoveEvent e){
+    public int DetectTreasure(PlayerMoveEvent e){
         Player p = e.getPlayer();
 
 
-        if(!arduino.ArduinoIsWorking) return;
+        if(!arduino.ArduinoIsWorking) return 0;
 
 
-        int radius = 50;
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
             public void run() {
-                    for (int x = -radius; x <= radius; x++) {
-                        for (int y = -radius; y <= radius; y++) {
-                            for (int z = -radius; z <= radius; z++) {
-                                Block block = p.getWorld().getBlockAt(p.getLocation().add(x, y, z));
-                                if (block.getType() == Material.CHEST) {
-                                    double distance = p.getLocation().distance(block.getLocation());
-                                    String signal = "A";
-                                    if(distance <=1){
-                                        //W
-                                        signal = "W";
-                                    }
-                                    if(distance > 1 && distance <= 3){
-                                        //S
-                                        signal = "S";
-                                    }
-                                    if(distance > 3 && distance <= 7){
-                                        //C
-                                        signal = "C";
-                                    }
-                                    if(distance > 7 && distance <= 12){
-                                        //M
-                                        signal = "M";
-                                    }
-                                    if(distance > 12 && distance <= 25){
-                                        //F
-                                        signal = "F";
-                                    }
-                                    if(distance > 25){
-                                        signal = "D";
-                                    }
 
-                                    arduino.SendSignal(signal);
-
-                                    break;
-                                }
-                            }
-                        }
-                    }
             }
         }, 20L);
-
+        return 0;
     }
 
     public void CalcDistance(double dist){
