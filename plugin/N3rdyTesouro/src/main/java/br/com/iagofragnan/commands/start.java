@@ -17,9 +17,9 @@ public class start implements CommandExecutor {
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
                 public void run() {
-                    players.sendTitle("GitHub", ChatColor.GRAY + "github.com/iagof-dev/", 20, 20, 20);
+                    players.sendTitle("GITHUB", ChatColor.GRAY + "github.com/iagof-dev/", 20, 20, 20);
                 }
-            }, 150L);
+            }, 50L);
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
                 public void run() {
@@ -29,7 +29,7 @@ public class start implements CommandExecutor {
 
             Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
                 public void run() {
-                    players.sendTitle("Portfolio", ChatColor.GRAY+"iagofragnan.com.br", 20, 20, 20);
+                    players.sendTitle("PORTFOLIO", ChatColor.GRAY+"iagofragnan.com.br", 20, 20, 20);
                 }
             }, 270L);
 

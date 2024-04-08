@@ -12,6 +12,7 @@ public class OnTick {
 
 
         if(player.getObj_player() == null) return;
+        if(!arduino.ArduinoIsWorking) return;
 
         Player p = player.getObj_player();
         int radius = 65;
