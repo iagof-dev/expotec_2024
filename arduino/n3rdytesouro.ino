@@ -29,10 +29,10 @@ void loop()
   {
     char command = Serial.read();
     last_cmd = command;
-    while (Serial.available() > 0)
-    {
-      Serial.read();
-    }
+    //while (Serial.available() > 0)
+    //{
+      //Serial.read();
+    //}
   }
 
   switch (last_cmd)
