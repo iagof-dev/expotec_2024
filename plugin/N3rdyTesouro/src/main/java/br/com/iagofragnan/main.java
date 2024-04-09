@@ -40,6 +40,7 @@ public class main extends JavaPlugin implements Listener {
         this.getCommand("test").setExecutor(new br.com.iagofragnan.commands.test());
         this.getCommand("debug").setExecutor(new br.com.iagofragnan.commands.debug());
         this.getCommand("start").setExecutor(new br.com.iagofragnan.commands.start());
+        this.getCommand("end").setExecutor(new br.com.iagofragnan.commands.end());
 
 
     }
