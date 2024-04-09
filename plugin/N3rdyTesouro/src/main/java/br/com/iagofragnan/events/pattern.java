@@ -3,13 +3,16 @@ package br.com.iagofragnan.events;
 import br.com.iagofragnan.models.player;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -23,6 +26,7 @@ public class Pattern implements Listener {
         e.getPlayer().setGameMode(GameMode.SURVIVAL);
         e.getPlayer().setFoodLevel(100);
         e.setJoinMessage("");
+        e.getPlayer().getInventory().clear();
         e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 0, 67, 0, 0, 0));
     }
 
@@ -66,6 +70,18 @@ public class Pattern implements Listener {
         //
 
         //e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void PlayerDrop(PlayerDropItemEvent e){
+        if(e.getItemDrop().getItemStack().getType() == Material.DIAMOND_SPADE){
+            e.setCancelled(true);
+        }
+
+    }
+    @EventHandler
+    public void ItemsDropped(ItemSpawnEvent e){
+        e.getEntity().remove();
     }
 
 }

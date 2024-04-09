@@ -4,6 +4,9 @@ package br.com.iagofragnan.models;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
@@ -12,54 +15,67 @@ import static br.com.iagofragnan.models.player.getObj_world;
 
 public class arena {
 
+    // Max world coords to create arena limit
+    static int Max_X = 999999;
+    static int Max_Y = 64;
+    static int Max_Z = 999999;
+
+    //Size of the arena
+    static int size_x = 40;
+    static int size_y = 13;
+    static int size_z = 40;
+
     private static Location Arena_StartPOS;
     private static Location Arena_EndPOS;
 
 
     public static void CreateArena(){
-        //MAX Random Location
-        int Max_X = 999999;
-        int Max_Y = 64;
-        int Max_Z = 999999;
+
+        Player p = player.getObj_player();
+
+        p.getInventory().clear();
+        ItemStack shovel = new ItemStack(Material.DIAMOND_SPADE, 1);
+        shovel.addEnchantment(Enchantment.DIG_SPEED, 1);
+        p.getInventory().addItem(shovel);
+
         Random rnd = new Random();
-        Location RandomLocation = new Location(player.getObj_world(),rnd.nextInt(0, Max_X), Max_Y, rnd.nextInt(0, Max_Z), 1, 1);
+        Location randomLocation = new Location(player.getObj_world(),rnd.nextInt(0, Max_X), Max_Y, rnd.nextInt(0, Max_Z), 1, 1);
 
 
-        //Size of the arena
-        int size_x = 40;
-        int size_y = 13;
-        int size_z = 40;
-
-        //Generate random chest by RandomLocation
-        int ChestRandomSeed_X = rnd.nextInt(RandomLocation.getBlockX(), RandomLocation.getBlockX() + size_x);
-        int ChestRandomSeed_Y = rnd.nextInt(Max_Y, Max_Y + 5);
-        int ChestRandomSeed_Z = rnd.nextInt(RandomLocation.getBlockZ(), RandomLocation.getBlockZ() + size_z);
 
 
-        for (int k = RandomLocation.getBlockY(); k < (RandomLocation.getBlockY() + size_y); k++) {
-            for (int i = RandomLocation.getBlockX(); i < (RandomLocation.getBlockX() + size_x); i++) {
-                for (int j = RandomLocation.getBlockZ(); j < (RandomLocation.getBlockZ() + size_z); j++) {
-                    Location PlaceBlock = new Location(player.getObj_world(), i, k, j);
+        //Generate random chest by randomLocation
+        int chestRandomSeed_X = rnd.nextInt(randomLocation.getBlockX(), randomLocation.getBlockX() + size_x);
+        int chestRandomSeed_Y = rnd.nextInt(Max_Y, Max_Y + 5);
+        int chestRandomSeed_Z = rnd.nextInt(randomLocation.getBlockZ(), randomLocation.getBlockZ() + size_z);
+
+
+        setArena_StartPOS(randomLocation);
+
+        for (int k = randomLocation.getBlockY(); k < (randomLocation.getBlockY() + size_y); k++) {
+            for (int i = randomLocation.getBlockX(); i < (randomLocation.getBlockX() + size_x); i++) {
+                for (int j = randomLocation.getBlockZ(); j < (randomLocation.getBlockZ() + size_z); j++) {
+                    Location placeBlock = new Location(player.getObj_world(), i, k, j);
 
                     //SE Y FOR 64 (BASE)
                     if(k == Max_Y){
-                        PlaceBlock.getBlock().setType(Material.BARRIER);
+                        placeBlock.getBlock().setType(Material.BARRIER);
                     }
                     if(k > Max_Y && k <= (Max_Y + 5)){
-                        if (i == RandomLocation.getBlockX() || i == (RandomLocation.getBlockX() + size_x - 1) || j == RandomLocation.getBlockZ() || j == (RandomLocation.getBlockZ() + size_z - 1)) {
-                            PlaceBlock.getBlock().setType(Material.BARRIER);
-                            setArena_StartPOS(PlaceBlock);
+                        if (i == randomLocation.getBlockX() || i == (randomLocation.getBlockX() + size_x - 1) || j == randomLocation.getBlockZ() || j == (randomLocation.getBlockZ() + size_z - 1)) {
+                            placeBlock.getBlock().setType(Material.BARRIER);
                         } else {
-                            PlaceBlock.getBlock().setType(Material.SAND);
+                            placeBlock.getBlock().setType(Material.SAND);
                         }
                     }
                     if(k > (Max_Y + 5) && k <= (Max_Y + 8)){
-                        if (i == RandomLocation.getBlockX() || i == (RandomLocation.getBlockX() + size_x - 1) || j == RandomLocation.getBlockZ() || j == (RandomLocation.getBlockZ() + size_z - 1)) {
-                            PlaceBlock.getBlock().setType(Material.BARRIER);
-                            setArena_EndPOS(PlaceBlock);
+                        if (i == randomLocation.getBlockX() || i == (randomLocation.getBlockX() + size_x - 1) || j == randomLocation.getBlockZ() || j == (randomLocation.getBlockZ() + size_z - 1)) {
+                            placeBlock.getBlock().setType(Material.BARRIER);
+                            setArena_EndPOS(placeBlock);
+
                         }
                         else{
-                            PlaceBlock.getBlock().setType(Material.AIR);
+                            placeBlock.getBlock().setType(Material.AIR);
                         }
                     }
                 }
@@ -68,35 +84,34 @@ public class arena {
 
 
         //Setting up the chest
-        Location chest = new Location(getObj_world(), ChestRandomSeed_X, ChestRandomSeed_Y, ChestRandomSeed_Z);
+        Location chest = new Location(getObj_world(), chestRandomSeed_X, chestRandomSeed_Y, chestRandomSeed_Z);
         chest.getBlock().setType(Material.CHEST);
 
-        //      [debug]
-        Bukkit.getConsoleSender().sendMessage("Arena gerada em X: " + RandomLocation.getX() + ", Y: " + RandomLocation.getY() + ", Z: " + RandomLocation.getZ());
-        Bukkit.getConsoleSender().sendMessage("Bau definido em X: " + chest.getX() + ", Y: " + chest.getY() + ", Z: " + chest.getZ());
-
-        Location TeleportLocation = new Location(player.getObj_world(), (RandomLocation.getX() + (RandomLocation.getX() + Max_X))/2, Max_Y, (RandomLocation.getZ() + (RandomLocation.getZ() + Max_Z))/2);
-        getObj_player().teleport(TeleportLocation);
+        //      debug
+        Bukkit.getConsoleSender().sendMessage("Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
+        Location TeleportLocation = new Location(player.getObj_world(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
+        p.teleport(TeleportLocation);
     }
 
 
     public static void DeleteLastArena(){
-        Bukkit.getConsoleSender().sendMessage("Tentando deletar arena antiga");
-        for (int k = getArena_StartPOS().getBlockY(); k < getArena_EndPOS().getBlockY(); k++) {
-                for (int i = getArena_StartPOS().getBlockX(); i < getArena_EndPOS().getBlockX(); i++) {
-                        for (int j = getArena_StartPOS().getBlockZ(); j < getArena_EndPOS().getBlockZ(); j++) {
-                            Location remove = new Location(player.getObj_world(), i, k, j);
-                            remove.getBlock().setType(Material.AIR);
-                        } 
+        Bukkit.getConsoleSender().sendMessage("Deletando arena antiga...");
+        Player p = player.getObj_player();
+        p.getInventory().clear();
+        for (int k = getArena_StartPOS().getBlockY(); k <= getArena_EndPOS().getBlockY(); k++) {
+            for (int i = getArena_StartPOS().getBlockX(); i <= getArena_EndPOS().getBlockX(); i++) {
+                for (int j = getArena_StartPOS().getBlockZ(); j <= getArena_EndPOS().getBlockZ(); j++) {
+                    Location remove = new Location(player.getObj_world(), i, k, j);
+                    Material blockType = remove.getBlock().getType();
+                    remove.getBlock().setType(Material.AIR);
                 }
+            }
         }
-        Bukkit.getConsoleSender().sendMessage("Função finalizada");
-        
     }
 
 
 
-    public Location getArena_StartPOS() {
+    public static Location getArena_StartPOS() {
         return Arena_StartPOS;
     }
 
@@ -104,7 +119,7 @@ public class arena {
         Arena_StartPOS = arena_StartPOS;
     }
 
-    public Location getArena_EndPOS() {
+    public static Location getArena_EndPOS() {
         return Arena_EndPOS;
     }
 

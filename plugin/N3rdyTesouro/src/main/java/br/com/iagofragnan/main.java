@@ -36,11 +36,11 @@ public class main extends JavaPlugin implements Listener {
             }
         }.runTaskTimer(this, 0L, 5L);
 
+        this.getCommand("end").setExecutor(new br.com.iagofragnan.commands.end());
         this.getCommand("arena").setExecutor(new br.com.iagofragnan.commands.arena());
         this.getCommand("test").setExecutor(new br.com.iagofragnan.commands.test());
         this.getCommand("debug").setExecutor(new br.com.iagofragnan.commands.debug());
         this.getCommand("start").setExecutor(new br.com.iagofragnan.commands.start());
-        this.getCommand("end").setExecutor(new br.com.iagofragnan.commands.end());
 
 
     }

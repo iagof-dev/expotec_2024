@@ -13,7 +13,7 @@ public class test implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if(getObj_player() != null)
-            getObj_player().sendTitle("Verificando arduino.", "caso nao de nenhum sinal, verificar", 10, 50, 10);
+            getObj_player().sendTitle("Verificando arduino.", null, 10, 50, 10);
 
         br.com.iagofragnan.arduino.TestDevice();
         return true;

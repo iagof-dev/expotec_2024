@@ -41,7 +41,7 @@ public class arduino {
     public static void SendSignal(String value){
 
         if(!ArduinoIsWorking){
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Arduino n\u00e3o encontrado/configurado, pulando funç\u00e3o...");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Arduino n\u00e3o encontrado/configurado, pulando fun\u00e7\u00e3o...");
                 if(getObj_player() != null)
                     getObj_player().sendTitle(ChatColor.RED + "Arduino n\u00e3o configurado", "Por favor verifique e reinicie o servidor", 5, 200, 5);
             return;

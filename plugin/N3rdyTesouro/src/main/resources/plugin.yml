@@ -22,3 +22,7 @@ commands:
     description: debug command to create arena
     usage: /arena
     permission: n3rdytesouro.arena
+  end:
+    description: debug command to delete arena
+    usage: /end
+    permission: n3rdytesouro.end
