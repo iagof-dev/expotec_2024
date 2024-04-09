@@ -82,9 +82,9 @@ public class arena {
 
     public static void DeleteLastArena(){
         Bukkit.getConsoleSender().sendMessage("Tentando deletar arena antiga");
-        for (int k = Arena_StartPOS.getBlockY(); k < Arena_EndPOS.getBlockY(); k++) {
-                for (int i = Arena_StartPOS.getBlockX(); i < Arena_EndPOS.getBlockX(); i++) {
-                        for (int j = Arena_StartPOS.getBlockZ(); j < Arena_EndPOS.getBlockZ(); j++) {
+        for (int k = getArena_StartPOS().getBlockY(); k < getArena_EndPOS().getBlockY(); k++) {
+                for (int i = getArena_StartPOS().getBlockX(); i < getArena_EndPOS().getBlockX(); i++) {
+                        for (int j = getArena_StartPOS().getBlockZ(); j < getArena_EndPOS().getBlockZ(); j++) {
                             Location remove = new Location(player.getObj_world(), i, k, j);
                             remove.getBlock().setType(Material.AIR);
                         } 
