@@ -27,3 +27,18 @@ Edição de Textura
 ## Arduino
 
 [projeto](https://www.tinkercad.com/things/4CsAqzCUjmf-expotec-minecraft-2024?sharecode=N_ip5fn6wPsz_1O8KaItVAOZYmll_KhuWK5MK8uHq5U)
+
+## Configurações
+
+```
+arduino:
+  port: COM1
+mysql:
+  enable: false
+  address: 127.0.0.1
+  user: root
+  pass: '123'
+  port: 3306
+  database: N3rdyTesouro
+  table: Jogadores
+```
