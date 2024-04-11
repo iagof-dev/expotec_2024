@@ -2,14 +2,13 @@ package br.com.iagofragnan.settings;
 
 public class arduino {
 
-    private String COM;
+    private static String portCom;
 
-    public String getCOM() {
-        return COM;
+    public static String getPortCom() {
+        return portCom;
     }
 
-    public void setCOM(String COM) {
-        this.COM = COM;
+    public static void setPortCom(String NEWportCom) {
+        portCom = NEWportCom;
     }
-
 }

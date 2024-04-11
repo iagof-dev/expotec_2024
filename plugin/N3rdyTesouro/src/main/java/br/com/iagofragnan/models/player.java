@@ -16,20 +16,20 @@ public class player {
     private LocalTime StartTime;
     private LocalTime EndTime;
 
-    public static World getObj_world() {
+    public static World getWorld() {
         return obj_world;
     }
 
-    public static void setObj_world(World new_obj_world) {
+    public static void setWorld(World new_obj_world) {
         player.obj_world = new_obj_world;
     }
 
 
-    public String getPlayer_name() {
+    public String getPlayerName() {
         return player_name;
     }
 
-    public void setPlayer_name(String player_name) {
+    public void setPlayerName(String player_name) {
         this.player_name = player_name;
     }
 
@@ -50,11 +50,11 @@ public class player {
         this.EndTime = time.plusMinutes(5);
     }
 
-    public static Player getObj_player() {
+    public static Player getPlayerObj() {
         return obj_player;
     }
 
-    public static void setObj_player(Player NewPlayer) {
+    public static void setPlayerObj(Player NewPlayer) {
         obj_player = NewPlayer;
     }
 

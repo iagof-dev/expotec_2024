@@ -13,8 +13,6 @@ import org.bukkit.entity.Player;
 
 import java.util.Random;
 
-import static br.com.iagofragnan.models.player.getObj_player;
-import static br.com.iagofragnan.models.player.getObj_world;
 
 
 public class arena implements CommandExecutor {

@@ -1,6 +1,6 @@
 package br.com.iagofragnan.events;
 
-import br.com.iagofragnan.arduino;
+import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.models.player;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,10 +11,10 @@ public class OnTick {
     public static void OnTickEvent(){
 
 
-        if(player.getObj_player() == null) return;
+        if(player.getPlayerObj() == null) return;
         if(!arduino.ArduinoIsWorking) return;
 
-        Player p = player.getObj_player();
+        Player p = player.getPlayerObj();
         int radius = 65;
 
         for (int x = -radius; x <= radius; x++) {

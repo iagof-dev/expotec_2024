@@ -1,6 +1,6 @@
 package br.com.iagofragnan.commands;
 
-import br.com.iagofragnan.arduino;
+import br.com.iagofragnan.models.arduino;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

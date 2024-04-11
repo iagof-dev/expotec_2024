@@ -7,11 +7,11 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-import static br.com.iagofragnan.models.player.getObj_player;
-import static br.com.iagofragnan.models.player.getObj_world;
+import static br.com.iagofragnan.models.player.*;
 
 public class arena {
 
@@ -30,16 +30,21 @@ public class arena {
 
 
     public static void CreateArena(){
-
-        Player p = player.getObj_player();
+        Player p = player.getPlayerObj();
+        p.resetTitle();
+        if(p.hasPotionEffect(PotionEffectType.SPEED)){
+            p.removePotionEffect(PotionEffectType.SPEED);
+        }
+        p.sendTitle("Gerando arena", "Aguarde estamos criando uma arena", 5, 5, 5);
 
         p.getInventory().clear();
         ItemStack shovel = new ItemStack(Material.DIAMOND_SPADE, 1);
         shovel.addEnchantment(Enchantment.DIG_SPEED, 1);
+        shovel.addEnchantment(Enchantment.DURABILITY, 3);
         p.getInventory().addItem(shovel);
 
         Random rnd = new Random();
-        Location randomLocation = new Location(player.getObj_world(),rnd.nextInt(0, Max_X), Max_Y, rnd.nextInt(0, Max_Z), 1, 1);
+        Location randomLocation = new Location(player.getWorld(),rnd.nextInt(0, Max_X), Max_Y, rnd.nextInt(0, Max_Z), 1, 1);
 
 
 
@@ -55,7 +60,7 @@ public class arena {
         for (int k = randomLocation.getBlockY(); k < (randomLocation.getBlockY() + size_y); k++) {
             for (int i = randomLocation.getBlockX(); i < (randomLocation.getBlockX() + size_x); i++) {
                 for (int j = randomLocation.getBlockZ(); j < (randomLocation.getBlockZ() + size_z); j++) {
-                    Location placeBlock = new Location(player.getObj_world(), i, k, j);
+                    Location placeBlock = new Location(player.getWorld(), i, k, j);
 
                     //SE Y FOR 64 (BASE)
                     if(k == Max_Y){
@@ -84,29 +89,35 @@ public class arena {
 
 
         //Setting up the chest
-        Location chest = new Location(getObj_world(), chestRandomSeed_X, chestRandomSeed_Y, chestRandomSeed_Z);
+        Location chest = new Location(getWorld(), chestRandomSeed_X, chestRandomSeed_Y, chestRandomSeed_Z);
         chest.getBlock().setType(Material.CHEST);
 
         //      debug
         Bukkit.getConsoleSender().sendMessage("Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
-        Location TeleportLocation = new Location(player.getObj_world(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
+        Location TeleportLocation = new Location(player.getWorld(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
         p.teleport(TeleportLocation);
     }
 
 
     public static void DeleteLastArena(){
-        Bukkit.getConsoleSender().sendMessage("Deletando arena antiga...");
-        Player p = player.getObj_player();
-        p.getInventory().clear();
-        for (int k = getArena_StartPOS().getBlockY(); k <= getArena_EndPOS().getBlockY(); k++) {
-            for (int i = getArena_StartPOS().getBlockX(); i <= getArena_EndPOS().getBlockX(); i++) {
-                for (int j = getArena_StartPOS().getBlockZ(); j <= getArena_EndPOS().getBlockZ(); j++) {
-                    Location remove = new Location(player.getObj_world(), i, k, j);
-                    Material blockType = remove.getBlock().getType();
-                    remove.getBlock().setType(Material.AIR);
+        try{
+            Bukkit.getConsoleSender().sendMessage("Deletando arena antiga...");
+            Player p = player.getPlayerObj();
+            p.getInventory().clear();
+            for (int k = getArena_StartPOS().getBlockY(); k <= getArena_EndPOS().getBlockY(); k++) {
+                for (int i = getArena_StartPOS().getBlockX(); i <= getArena_EndPOS().getBlockX(); i++) {
+                    for (int j = getArena_StartPOS().getBlockZ(); j <= getArena_EndPOS().getBlockZ(); j++) {
+                        Location remove = new Location(player.getWorld(), i, k, j);
+                        Material blockType = remove.getBlock().getType();
+                        remove.getBlock().setType(Material.AIR);
+                    }
                 }
             }
         }
+        finally{
+            Bukkit.getConsoleSender().sendMessage("Arena deletada.");
+        }
+
     }
 
 

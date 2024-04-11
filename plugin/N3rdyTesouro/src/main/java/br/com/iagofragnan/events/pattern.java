@@ -20,8 +20,8 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 public class Pattern implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
-        player.setObj_player(e.getPlayer());
-        player.setObj_world(e.getPlayer().getWorld());
+        player.setPlayerObj(e.getPlayer());
+        player.setWorld(e.getPlayer().getWorld());
         e.getPlayer().getInventory().clear();
         e.getPlayer().setGameMode(GameMode.SURVIVAL);
         e.getPlayer().setFoodLevel(100);
