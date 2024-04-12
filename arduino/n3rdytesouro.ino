@@ -25,14 +25,10 @@ void setup()
 
 void loop()
 {
-  if (Serial.available() > 0)
+  while (Serial.available() > 0)
   {
     char command = Serial.read();
     last_cmd = command;
-    //while (Serial.available() > 0)
-    //{
-      //Serial.read();
-    //}
   }
 
   switch (last_cmd)
