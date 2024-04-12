@@ -42,3 +42,18 @@ mysql:
   database: N3rdyTesouro
   table: Jogadores
 ```
+
+
+## TODO
+
+* Input de nome com bigorna para registrar no banco de dados
+
+* Calcular tempo
+
+* Insert no MySql
+
+* Leaderboards no holograma
+
+* Calcular e pegar tempo médio para cada partida
+
+* Tela de Carregamento (abobora)
