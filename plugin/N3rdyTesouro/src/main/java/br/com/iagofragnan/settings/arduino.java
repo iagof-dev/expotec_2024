@@ -8,7 +8,7 @@ public class arduino {
         return portCom;
     }
 
-    public static void setPortCom(String NEWportCom) {
-        portCom = NEWportCom;
+    public static void setPortCom(String newPortCom) {
+        portCom = newPortCom;
     }
 }

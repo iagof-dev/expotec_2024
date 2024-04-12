@@ -66,7 +66,7 @@ public class Pattern implements Listener {
     public void PlayerCommands(PlayerCommandPreprocessEvent e){
 
         //
-        //      DESCOMENTAR NO DIA DA EXPOTEC
+        //      TIRAR COMENTARIO NO DIA DA EXPOTEC
         //
 
         //e.setCancelled(true);
