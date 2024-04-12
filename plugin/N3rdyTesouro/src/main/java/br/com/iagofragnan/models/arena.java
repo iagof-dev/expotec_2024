@@ -47,9 +47,9 @@ public class arena {
         Location randomLocation = new Location(player.getWorld(),rnd.nextInt(0, Max_X), Max_Y, rnd.nextInt(0, Max_Z), 1, 1);
 
         //Generate random chest by randomLocation
-        int chestRandomSeed_X = rnd.nextInt(randomLocation.getBlockX() + 1, randomLocation.getBlockX() + size_x);
-        int chestRandomSeed_Y = rnd.nextInt(Max_Y + 1 , Max_Y + 5);
-        int chestRandomSeed_Z = rnd.nextInt(randomLocation.getBlockZ() + 1, randomLocation.getBlockZ() + size_z);
+        int chestRandomSeed_X = rnd.nextInt((randomLocation.getBlockX() + 1), (randomLocation.getBlockX() + size_x) - 1);
+        int chestRandomSeed_Y = rnd.nextInt((Max_Y + 1) , (Max_Y + 5));
+        int chestRandomSeed_Z = rnd.nextInt((randomLocation.getBlockZ() + 1), (randomLocation.getBlockZ() + size_z) - 1);
 
 
         setArena_StartPOS(randomLocation);
@@ -83,7 +83,6 @@ public class arena {
                 }
             }
         }
-
 
         //Setting up the chest
         Location chest = new Location(getWorld(), chestRandomSeed_X, chestRandomSeed_Y, chestRandomSeed_Z);
