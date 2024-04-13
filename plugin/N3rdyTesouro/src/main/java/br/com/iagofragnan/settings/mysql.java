@@ -9,7 +9,7 @@ public class mysql {
     private static String database;
     private static String table;
 
-    public String getAddress() {
+    public static String getAddress() {
         return address;
     }
 
@@ -17,7 +17,7 @@ public class mysql {
         address = newAddress;
     }
 
-    public Integer getPort() {
+    public static Integer getPort() {
         return port;
     }
 
@@ -25,7 +25,7 @@ public class mysql {
       port = newPort;
     }
 
-    public String getUser() {
+    public static String getUser() {
         return user;
     }
 
@@ -33,7 +33,7 @@ public class mysql {
         user = newUser;
     }
 
-    public String getPass() {
+    public static String getPass() {
         return pass;
     }
 
@@ -41,7 +41,7 @@ public class mysql {
         pass = newPass;
     }
 
-    public String getDatabase() {
+    public static String getDatabase() {
         return database;
     }
 
@@ -49,7 +49,7 @@ public class mysql {
         database = newDatabase;
     }
 
-    public String getTable() {
+    public static String getTable() {
         return table;
     }
 
