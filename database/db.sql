@@ -1,11 +1,17 @@
-create database if not exists EXPOTEC_2024;
+DROP DATABASE expotec;
 
-use EXPOTEC_2024;
+CREATE DATABASE expotec;
 
-create table if not exists jogadores(
-    id int primary key auto_increment,
-    nome varchar(64) not null,
-    pontuacao int(3) not null,
-    tempo datetime not null,
-    baus int not null
+USE expotec;
+
+CREATE TABLE players(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE rounds (
+id INT PRIMARY KEY AUTO_INCREMENT,
+id_player INT NOT NULL REFERENCES players(id),
+time_per_round TIME not null,
+time_per_game TIME NOT NULL
 );
