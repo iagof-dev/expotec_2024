@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-public class Pattern implements Listener {
+public class pattern implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
         player.setPlayerObj(e.getPlayer());

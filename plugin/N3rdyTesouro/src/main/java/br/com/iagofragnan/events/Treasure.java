@@ -11,7 +11,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 
-public class Treasure implements Listener {
+public class treasure implements Listener {
 
 
     static Boolean isFound = false;

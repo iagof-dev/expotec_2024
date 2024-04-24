@@ -5,6 +5,8 @@ description: Plugin para exposição da Expotec 2024, envolvendo um Caça ao Tes
 version: 1.0.0
 website: github.com/iagof-dev/
 depend: [ ProtocolLib ]
+softdepend:
+  - DecentHolograms
 commands:
   test:
     description: test arduino device with test signal
@@ -26,3 +28,7 @@ commands:
     description: debug command to delete arena
     usage: /end
     permission: n3rdytesouro.end
+  timer:
+    description: debug command to test timer
+    usage: /timer [start/end]
+    permission: n3rdytesouro.timer

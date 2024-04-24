@@ -20,7 +20,7 @@ public class mysql {
         try {
             connection = DriverManager.getConnection(url, user, pass);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -28,28 +28,12 @@ public class mysql {
         return connection;
     }
 
-    public static void Query(String sql){
+    public static void Insert(String sql){
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.executeUpdate();
-        } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage(e.getMessage());
-        }
-    }
-
-    public static void registrarJogador(){
-
-
-        String sql = "INSERT INTO" + table + " VALUES (default, ?, ?, ?, ?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, br.com.iagofragnan.models.player.getPlayerName());
-            stmt.setInt(2, 1);
-            stmt.setTime(3, new Time(1));
-            stmt.setInt(4, 0);
-            stmt.executeUpdate();
-        } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage(e.getMessage());
+            PreparedStatement stmt = getConnection().prepareStatement(sql);
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

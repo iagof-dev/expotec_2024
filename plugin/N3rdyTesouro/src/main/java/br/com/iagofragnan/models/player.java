@@ -14,22 +14,8 @@ public class player {
     private static Player obj_player;
     private static World obj_world;
     private static String player_name;
-    private int chests;
-    private LocalTime StartTime;
-    private LocalTime EndTime;
-
-    private static Boolean loading = false;
-
-    public static void setLoading(Boolean value){
-        loading = value;
-        if(loading){
-            getPlayerObj().getInventory().setHelmet(new ItemStack(Material.PUMPKIN));
-            getPlayerObj().updateInventory();
-            return;
-        }
-        getPlayerObj().getInventory().clear();
-        getPlayerObj().updateInventory();
-    }
+    private int chests = 0;
+    private int rounds = 0;
 
 
     public static World getWorld() {
@@ -53,18 +39,10 @@ public class player {
         return chests;
     }
 
-    public void setChests(int chests) {
-        this.chests = chests;
+    public void addChests(int newChestValue) {
+        chests += newChestValue;
     }
 
-    public LocalTime getStartTime() {
-        return StartTime;
-    }
-
-    public void setStartTime(LocalTime time) {
-        this.StartTime = time;
-        this.EndTime = time.plusMinutes(5);
-    }
 
     public static Player getPlayerObj() {
         return obj_player;
@@ -74,7 +52,11 @@ public class player {
         obj_player = NewPlayer;
     }
 
-    public LocalTime getEndTime() {
-        return EndTime;
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void addRounds(int newRoundsValue) {
+        rounds += newRoundsValue;
     }
 }

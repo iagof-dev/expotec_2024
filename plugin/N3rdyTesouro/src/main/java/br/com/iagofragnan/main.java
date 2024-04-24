@@ -1,6 +1,8 @@
 package br.com.iagofragnan;
 
-import br.com.iagofragnan.events.Pattern;
+import br.com.iagofragnan.events.pattern;
+import br.com.iagofragnan.events.onTick;
+import br.com.iagofragnan.events.treasure;
 import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.settings.mysql;
 import org.bukkit.Bukkit;
@@ -11,6 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+
 
 import static br.com.iagofragnan.settings.arduino.*;
 
@@ -25,8 +29,8 @@ public class main extends JavaPlugin implements Listener {
     @EventHandler
     public void onEnable(){
         plugin = this;
-
         setPortCom(config.getString("arduino.port"));
+
         if(config.getBoolean("mysql.enable")){
             Bukkit.getConsoleSender().sendMessage("N3rdyTesouro | MySql est\u00e1 ativado nas configura\u00e7\u00d5es");
             mysql.setAddress(config.getString("mysql.address"));
@@ -42,8 +46,8 @@ public class main extends JavaPlugin implements Listener {
         Bukkit.getServer().getWorld("world").setStorm(false);
         Bukkit.getServer().getWorld("world").setTime(3000);
 
-        getServer().getPluginManager().registerEvents(new Pattern(), this);
-        getServer().getPluginManager().registerEvents(new br.com.iagofragnan.events.Treasure(), this);
+        getServer().getPluginManager().registerEvents(new pattern(), this);
+        getServer().getPluginManager().registerEvents(new treasure(), this);
 
         arduino.VerifyConnection();
         Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
@@ -55,7 +59,7 @@ public class main extends JavaPlugin implements Listener {
         new BukkitRunnable(){
             @Override
             public void run(){
-                br.com.iagofragnan.events.OnTick.OnTickEvent();
+                onTick.OnTickEvent();
             }
         }.runTaskTimer(this, 0L, 5L);
 
@@ -64,6 +68,7 @@ public class main extends JavaPlugin implements Listener {
         this.getCommand("test").setExecutor(new br.com.iagofragnan.commands.test());
         this.getCommand("debug").setExecutor(new br.com.iagofragnan.commands.debug());
         this.getCommand("start").setExecutor(new br.com.iagofragnan.commands.start());
+        this.getCommand("timer").setExecutor(new br.com.iagofragnan.commands.timer());
     }
     @EventHandler
     public void onLoad(){

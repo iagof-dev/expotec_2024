@@ -13,11 +13,13 @@ repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots")
     maven("https://oss.sonatype.org/content/repositories/central")
     maven("https://repo.dmulloy2.net/repository/public/")
+    maven("https://jitpack.io")
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT")
-    compileOnly("com.comphenix.protocol:ProtocolLib:5.1.0");
+    compileOnly("com.comphenix.protocol:ProtocolLib:5.1.0")
+    compileOnly("com.github.decentsoftware-eu:decentholograms:2.8.6")
     implementation("com.fazecast:jSerialComm:2.6.2")
 }
 

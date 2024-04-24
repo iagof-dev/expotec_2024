@@ -1,26 +1,19 @@
 package br.com.iagofragnan.models;
 
-
 import com.fazecast.jSerialComm.SerialPort;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-
-import javax.sound.sampled.Port;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
-
 import static br.com.iagofragnan.models.player.*;
 
 public class arduino {
-
     static SerialPort porta;
     static String PortCOM = br.com.iagofragnan.settings.arduino.getPortCom();
-
-    public static boolean ArduinoIsWorking = false;
+    public static boolean isWorking = false;
     HashMap<String, String> signals = new HashMap<>();
     static OutputStream SerialOut;
-
 
     public static boolean VerifyConnection(){
         porta = SerialPort.getCommPort(PortCOM);
@@ -28,31 +21,26 @@ public class arduino {
         if (result){
             SerialOut = porta.getOutputStream();
             Bukkit.getConsoleSender().sendMessage("§b ARDUINO | Porta conex\u00e3o estabilizada ("+ PortCOM +").");
-            ArduinoIsWorking = true;
-            return true;
+            isWorking = true;
         }
-
-        Bukkit.getConsoleSender().sendMessage("§d ARDUINO | Erro! n\u00e3o há conex\u00e3o com porta serial ("+ PortCOM +")");
-        return false;
+        else
+            Bukkit.getConsoleSender().sendMessage("§d ARDUINO | Erro! n\u00e3o há conex\u00e3o com porta serial ("+ PortCOM +")");
+        return isWorking;
     }
 
     public static void SendSignal(String value){
-
-        if(!ArduinoIsWorking){
+        if(!isWorking){
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Arduino n\u00e3o encontrado/configurado, pulando fun\u00e7\u00e3o...");
                 if(getPlayerObj() != null)
                     getPlayerObj().sendTitle(ChatColor.RED + "Arduino n\u00e3o configurado", "Por favor verifique e reinicie o servidor", 5, 200, 5);
             return;
         }
-
         try {
             SerialOut.write(value.getBytes());
             SerialOut.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public static void TestDevice(){

@@ -6,13 +6,13 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-public class OnTick {
+public class onTick {
 
     public static void OnTickEvent(){
 
 
         if(player.getPlayerObj() == null) return;
-        if(!arduino.ArduinoIsWorking) return;
+        if(!arduino.isWorking) return;
 
         Player p = player.getPlayerObj();
         int radius = 65;
