@@ -24,7 +24,7 @@ public class arduino {
             isWorking = true;
         }
         else
-            Bukkit.getConsoleSender().sendMessage("§d ARDUINO | Erro! n\u00e3o há conex\u00e3o com porta serial ("+ PortCOM +")");
+            Bukkit.getConsoleSender().sendMessage("§d ARDUINO | Erro! n\u00e3o h\u00e1 conex\u00e3o com porta serial ("+ PortCOM +")");
         return isWorking;
     }
 

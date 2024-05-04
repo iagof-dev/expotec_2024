@@ -3,6 +3,7 @@ package br.com.iagofragnan.models;
 
 import br.com.iagofragnan.events.treasure;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -29,6 +30,16 @@ public class arena {
     private static Location Arena_StartPOS;
     private static Location Arena_EndPOS;
 
+    public static void start(){
+        Player p = br.com.iagofragnan.models.player.getPlayerObj();
+        p.sendTitle("Ca\u00e7a ao Tesouro", ChatColor.GRAY+"Feito por Iago Fragnan", 20, 50, 20);
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
+            public void run() {
+                    br.com.iagofragnan.models.arena.CreateArena();
+                }
+        }, 120L);
+    }
 
     public static void CreateArena(){
         Player p = player.getPlayerObj();
@@ -90,7 +101,7 @@ public class arena {
         chest.getBlock().setType(Material.CHEST);
 
         //      debug
-        Bukkit.getConsoleSender().sendMessage("Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
+        Bukkit.getConsoleSender().sendMessage("DEBUG | Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
         Location TeleportLocation = new Location(player.getWorld(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
         p.teleport(TeleportLocation);
         treasure.setIsFound(false);
@@ -100,7 +111,7 @@ public class arena {
 
     public static void DeleteLastArena(){
         try{
-            Bukkit.getConsoleSender().sendMessage("Deletando arena antiga...");
+            Bukkit.getConsoleSender().sendMessage("DEBUG | Deletando arena antiga...");
             Player p = player.getPlayerObj();
             p.getInventory().clear();
             for (int k = getArena_StartPOS().getBlockY(); k <= getArena_EndPOS().getBlockY(); k++) {

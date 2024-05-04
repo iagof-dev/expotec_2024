@@ -14,6 +14,7 @@ repositories {
     maven("https://oss.sonatype.org/content/repositories/central")
     maven("https://repo.dmulloy2.net/repository/public/")
     maven("https://jitpack.io")
+    maven("https://mvnrepository.com/artifact/de.rapha149.signgui/signgui");
 }
 
 dependencies {
@@ -21,6 +22,7 @@ dependencies {
     compileOnly("com.comphenix.protocol:ProtocolLib:5.1.0")
     compileOnly("com.github.decentsoftware-eu:decentholograms:2.8.6")
     implementation("com.fazecast:jSerialComm:2.6.2")
+    implementation("de.rapha149.signgui:signgui:2.3.2")
 }
 
 

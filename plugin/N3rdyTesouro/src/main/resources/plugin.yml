@@ -12,10 +12,10 @@ commands:
     description: test arduino device with test signal
     usage: /test
     permission: n3rdytesouro.test
-  debug:
+  signal:
     description: test arduino device with custom signal to test
-    usage: /debug [code]
-    permission: n3rdytesouro.debug
+    usage: /signal [code]
+    permission: n3rdytesouro.signal
   start:
     description: start the minigame
     usage: /start
