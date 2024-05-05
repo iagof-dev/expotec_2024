@@ -2,6 +2,7 @@ package br.com.iagofragnan.settings;
 
 public class mysql {
 
+    private static boolean enabled = false;
     private static String address;
     private static Integer port;
     private static String user;
@@ -55,5 +56,13 @@ public class mysql {
 
     public static void setTable(String newTable) {
         table = newTable;
+    }
+
+    public static boolean isEnabled() {
+        return enabled;
+    }
+
+    public static void setEnabled(boolean value) {
+        enabled = value;
     }
 }

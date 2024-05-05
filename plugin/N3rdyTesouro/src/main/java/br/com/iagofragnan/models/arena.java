@@ -11,9 +11,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
+import java.time.LocalTime;
 import java.util.Random;
 
 import static br.com.iagofragnan.models.player.*;
+import static br.com.iagofragnan.models.timer.setStartTime;
 
 public class arena {
 
@@ -30,16 +32,6 @@ public class arena {
     private static Location Arena_StartPOS;
     private static Location Arena_EndPOS;
 
-    public static void start(){
-        Player p = br.com.iagofragnan.models.player.getPlayerObj();
-        p.sendTitle("Ca\u00e7a ao Tesouro", ChatColor.GRAY+"Feito por Iago Fragnan", 20, 50, 20);
-
-        Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {
-            public void run() {
-                    br.com.iagofragnan.models.arena.CreateArena();
-                }
-        }, 120L);
-    }
 
     public static void CreateArena(){
         Player p = player.getPlayerObj();
@@ -100,12 +92,13 @@ public class arena {
         Location chest = new Location(getWorld(), chestRandomSeed_X, chestRandomSeed_Y, chestRandomSeed_Z);
         chest.getBlock().setType(Material.CHEST);
 
-        //      debug
+        br.com.iagofragnan.controller.game.addRounds(1);
+        setStartTime(LocalTime.now());
+
         Bukkit.getConsoleSender().sendMessage("DEBUG | Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
         Location TeleportLocation = new Location(player.getWorld(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
         p.teleport(TeleportLocation);
         treasure.setIsFound(false);
-
     }
 
 
@@ -125,7 +118,7 @@ public class arena {
             }
         }
         finally{
-            Bukkit.getConsoleSender().sendMessage("Arena deletada.");
+            Bukkit.getConsoleSender().sendMessage("DEBUG | Arena deletada.");
         }
 
     }

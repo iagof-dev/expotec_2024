@@ -32,7 +32,6 @@ public class timer implements CommandExecutor {
         if (args[0].equals("start")){
             p.sendMessage("Iniciando timer");
             setStartTime(LocalTime.now());
-            scoreboard.createScoreboard(p);
             setIsRunning(true);
         }
         else if(args[0].equals("end") || args[0].equals("stop")){
@@ -49,13 +48,9 @@ public class timer implements CommandExecutor {
             p.sendMessage("Final: " + getEndTime());
 
         }
-        else if(args[0].equals("setname")){
-            p.sendMessage("Abrindo placa");
-            player.initPlayerSignName();
-        }
-        else if(args[0].equals("getname")){
-            p.sendMessage("Nome para registro no banco de dados:");
-            p.sendMessage(player.getPlayerName());
+        else if(args[0].equals("save")){
+            Integer value = Integer.parseInt(args[1]);
+            br.com.iagofragnan.controller.mysql.registerTime("exemplo", value, getStartTime(), getEndTime());
         }
         else{
             p.sendMessage(ChatColor.RED + "Erro!");

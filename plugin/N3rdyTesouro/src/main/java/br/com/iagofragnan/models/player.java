@@ -64,14 +64,14 @@ public class player {
 
 
         SignGUI sign = SignGUI.builder()
-                .setLine(1,  ChatColor.WHITE + "" + ChatColor.BOLD + "--------------")
-                .setLine(2,  ChatColor.WHITE + "" + ChatColor.BOLD + "Seu nome acima")
-                .setLine(3, ChatColor.WHITE + "" + ChatColor.BOLD + "para o Ranking")
+                .setLine(1,  ChatColor.WHITE + "" + ChatColor.BOLD + "/\\/\\/\\/\\/\\/\\/\\")
+                .setLine(2, "Digite o")
+                .setLine(3, "Seu nome acima")
                 .setHandler((player, result) ->{
                     String name = result.getLine(0);
                     if (!(name.isEmpty())) {
                         br.com.iagofragnan.models.player.setPlayerName(name);
-                        br.com.iagofragnan.models.arena.start();
+                        br.com.iagofragnan.controller.game.start();
                     }
                     return Collections.emptyList();
                 })

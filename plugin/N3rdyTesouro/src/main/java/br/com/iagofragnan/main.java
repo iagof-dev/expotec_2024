@@ -40,6 +40,7 @@ public class main extends JavaPlugin implements Listener {
 
         if(config.getBoolean("mysql.enable")){
             Bukkit.getConsoleSender().sendMessage("N3rdyTesouro | MySql est\u00e1 ativado nas configura\u00e7\u00d5es");
+            mysql.setEnabled(true);
             mysql.setAddress(config.getString("mysql.address"));
             mysql.setPort(config.getInt("mysql.port"));
             mysql.setUser(config.getString("mysql.user"));

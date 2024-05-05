@@ -13,12 +13,7 @@ import org.bukkit.inventory.ItemStack;
 public class start implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         br.com.iagofragnan.models.player.initPlayerSignName();
-
-
-
-
         return true;
     }
 }

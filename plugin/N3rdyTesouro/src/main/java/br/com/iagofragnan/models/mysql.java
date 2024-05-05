@@ -1,6 +1,7 @@
 package br.com.iagofragnan.models;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import java.sql.*;
 import java.util.Date;
@@ -14,13 +15,13 @@ public class mysql {
     static String table = br.com.iagofragnan.settings.mysql.getTable();
     static String database = br.com.iagofragnan.settings.mysql.getDatabase();
     static String url = "jdbc:mysql://"+ address + ":" + port + "/" + database;
-    static Connection connection;
+    static Connection connection = null;
 
-    public static void mysql(){
+    static void init(){
         try {
             connection = DriverManager.getConnection(url, user, pass);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Erro na conexão com MySql:\n" + e.getMessage());
         }
     }
 
@@ -29,6 +30,7 @@ public class mysql {
     }
 
     public static void Insert(String sql){
+        init();
         try {
             PreparedStatement stmt = getConnection().prepareStatement(sql);
             stmt.execute();
