@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 main: br.com.iagofragnan.main
 name: N3rdyTesouro
 author: Iago F.
@@ -35,4 +36,39 @@ commands:
   timer:
     description: debug command to test timer
     usage: /timer [start/end]
+=======
+main: br.com.iagofragnan.main
+name: N3rdyTesouro
+author: Iago F.
+description: Plugin para exposição da Expotec 2024, envolvendo um Caça ao Tesouro utilizando um Arduino como b\u00fassola.
+version: 1.0.0
+website: github.com/iagof-dev/
+depend:
+  - ProtocolLib
+  - DecentHolograms
+commands:
+  test:
+    description: test arduino device with test signal
+    usage: /test
+    permission: n3rdytesouro.test
+  signal:
+    description: test arduino device with custom signal to test
+    usage: /signal [code]
+    permission: n3rdytesouro.signal
+  start:
+    description: start the minigame
+    usage: /start
+    permission: n3rdytesouro.start
+  arena:
+    description: debug command to create arena
+    usage: /arena
+    permission: n3rdytesouro.arena
+  end:
+    description: debug command to delete arena
+    usage: /end
+    permission: n3rdytesouro.end
+  timer:
+    description: debug command to test timer
+    usage: /timer [start/end]
+>>>>>>> 1b13af6f01d7e8715a26ffe1599171301399c2db
     permission: n3rdytesouro.timer

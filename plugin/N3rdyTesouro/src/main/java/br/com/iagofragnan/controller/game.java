@@ -14,7 +14,10 @@ import static br.com.iagofragnan.models.timer.setIsRunning;
 
 public class game {
 
+<<<<<<< HEAD
     private static boolean playing = false;
+=======
+>>>>>>> 1b13af6f01d7e8715a26ffe1599171301399c2db
     private static Integer rounds = 0;
 
     public static void start(){
@@ -28,7 +31,10 @@ public class game {
         }, 100L);
     }
     public static void end(){
+<<<<<<< HEAD
         game.setPlaying(false);
+=======
+>>>>>>> 1b13af6f01d7e8715a26ffe1599171301399c2db
         player.getPlayerObj().sendMessage("Deletando a ultima arena.");
         br.com.iagofragnan.models.arena.DeleteLastArena();
         br.com.iagofragnan.models.player.setSetupNameFinished(false);
@@ -56,6 +62,7 @@ public class game {
         rounds = 0;
     }
 
+<<<<<<< HEAD
     public static boolean isPlaying() {
         return playing;
     }
@@ -63,4 +70,6 @@ public class game {
     public static void setPlaying(boolean value) {
         playing = value;
     }
+=======
+>>>>>>> 1b13af6f01d7e8715a26ffe1599171301399c2db
 }
