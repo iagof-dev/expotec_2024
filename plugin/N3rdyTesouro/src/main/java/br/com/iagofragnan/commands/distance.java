@@ -1,19 +1,26 @@
-package br.com.iagofragnan.events;
+package br.com.iagofragnan.commands;
 
 import br.com.iagofragnan.controller.game;
 import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.models.player;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class onTick {
+public class distance implements CommandExecutor {
+
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
 
-    public static void OnTickEvent(){
-
-
-        if(!arduino.isWorking || !game.isPlaying() || player.getPlayerObj() == null) return;
+        if(!arduino.isWorking || player.getPlayerObj() == null) {
+            commandSender.sendMessage( ChatColor.RED + "Arduino não está funcionando ou Jogador inválido.");
+            return true;
+        }
 
 
         Player p = player.getPlayerObj();
@@ -26,11 +33,13 @@ public class onTick {
                     if (block.getType() == Material.CHEST) {
                         double distance = p.getLocation().distance(block.getLocation());
                         arduino.SendSignalByDistance(distance);
+                        commandSender.sendMessage("Distancia: " + distance);
+                        return true;
                     }
                 }
             }
         }
 
+        return false;
     }
-
 }

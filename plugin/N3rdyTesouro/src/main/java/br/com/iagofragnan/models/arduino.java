@@ -24,7 +24,7 @@ public class arduino {
             isWorking = true;
         }
         else
-            Bukkit.getConsoleSender().sendMessage("§d ARDUINO | Erro! n\u00e3o há conex\u00e3o com porta serial ("+ PortCOM +")");
+            Bukkit.getConsoleSender().sendMessage("§d ARDUINO | Erro! n\u00e3o h\u00e1 conex\u00e3o com porta serial ("+ PortCOM +")");
         return isWorking;
     }
 
@@ -50,6 +50,7 @@ public class arduino {
         Bukkit.getConsoleSender().sendMessage("Teste finalizado.");
     }
 
+    public static String last_cmd = "A";
     public static void SendSignalByDistance(double distance){
         String signal = "A";
         if(distance <=1){
@@ -77,6 +78,10 @@ public class arduino {
             signal = "D";
         }
 
+        if(last_cmd.equals(signal)) return;
+
+        last_cmd = signal;
+        Bukkit.getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + "DEBUG | Enviando sinal (" + signal + ")");
         arduino.SendSignal(signal);
     }
 

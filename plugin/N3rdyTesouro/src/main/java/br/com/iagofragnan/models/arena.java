@@ -1,8 +1,10 @@
 package br.com.iagofragnan.models;
 
 
+import br.com.iagofragnan.controller.game;
 import br.com.iagofragnan.events.treasure;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -10,9 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
+import java.time.LocalTime;
 import java.util.Random;
 
 import static br.com.iagofragnan.models.player.*;
+import static br.com.iagofragnan.models.timer.setStartTime;
 
 public class arena {
 
@@ -89,18 +93,20 @@ public class arena {
         Location chest = new Location(getWorld(), chestRandomSeed_X, chestRandomSeed_Y, chestRandomSeed_Z);
         chest.getBlock().setType(Material.CHEST);
 
-        //      debug
-        Bukkit.getConsoleSender().sendMessage("Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
+        br.com.iagofragnan.controller.game.addRounds(1);
+        game.setPlaying(true);
+        setStartTime(LocalTime.now());
+
+        Bukkit.getConsoleSender().sendMessage("DEBUG | Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
         Location TeleportLocation = new Location(player.getWorld(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
         p.teleport(TeleportLocation);
         treasure.setIsFound(false);
-
     }
 
 
     public static void DeleteLastArena(){
         try{
-            Bukkit.getConsoleSender().sendMessage("Deletando arena antiga...");
+            Bukkit.getConsoleSender().sendMessage("DEBUG | Deletando arena antiga...");
             Player p = player.getPlayerObj();
             p.getInventory().clear();
             for (int k = getArena_StartPOS().getBlockY(); k <= getArena_EndPOS().getBlockY(); k++) {
@@ -114,7 +120,7 @@ public class arena {
             }
         }
         finally{
-            Bukkit.getConsoleSender().sendMessage("Arena deletada.");
+            Bukkit.getConsoleSender().sendMessage("DEBUG | Arena deletada.");
         }
 
     }

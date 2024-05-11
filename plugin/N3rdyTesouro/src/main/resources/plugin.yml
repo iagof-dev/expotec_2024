@@ -4,18 +4,22 @@ author: Iago F.
 description: Plugin para exposição da Expotec 2024, envolvendo um Caça ao Tesouro utilizando um Arduino como b\u00fassola.
 version: 1.0.0
 website: github.com/iagof-dev/
-depend: [ ProtocolLib ]
-softdepend:
+depend:
+  - ProtocolLib
   - DecentHolograms
 commands:
+  distance:
+    description: test arduino device with distance command
+    usage: /distance
+    permission: n3rdytesouro.distance
   test:
     description: test arduino device with test signal
     usage: /test
     permission: n3rdytesouro.test
-  debug:
+  signal:
     description: test arduino device with custom signal to test
-    usage: /debug [code]
-    permission: n3rdytesouro.debug
+    usage: /signal [code]
+    permission: n3rdytesouro.signal
   start:
     description: start the minigame
     usage: /start

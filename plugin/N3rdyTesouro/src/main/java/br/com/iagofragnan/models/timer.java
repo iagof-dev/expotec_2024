@@ -8,8 +8,6 @@ public class timer {
     private static boolean isRunning = false;
     private static LocalTime startTime;
     private static LocalTime endTime;
-    private int timePerRound;
-    private java.sql.Time averageTime;
 
     public static LocalTime getStartTime() {
         return startTime;
@@ -27,13 +25,8 @@ public class timer {
         endTime = newEndTime;
     }
 
-    public int getTimePerRound() {
-        return timePerRound;
-    }
 
-    public void setTimePerRound(int newTimePerRound) {
-        timePerRound = newTimePerRound;
-    }
+
 
     public boolean getIsRunning() {
         return isRunning;
@@ -43,11 +36,4 @@ public class timer {
         isRunning = newValue;
     }
 
-    public Time getAverageTime() {
-        return averageTime;
-    }
-
-    public void setAverageTime(Time newAverageTime) {
-        averageTime = newAverageTime;
-    }
 }

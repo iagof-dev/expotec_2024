@@ -1,10 +1,17 @@
 package br.com.iagofragnan;
 
+import br.com.iagofragnan.commands.signal;
 import br.com.iagofragnan.events.pattern;
 import br.com.iagofragnan.events.onTick;
 import br.com.iagofragnan.events.treasure;
 import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.settings.mysql;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -24,15 +31,16 @@ public class main extends JavaPlugin implements Listener {
     FileConfiguration config = getConfig();
 
 
-
     static Plugin plugin;
     @EventHandler
     public void onEnable(){
         plugin = this;
         setPortCom(config.getString("arduino.port"));
 
+
         if(config.getBoolean("mysql.enable")){
             Bukkit.getConsoleSender().sendMessage("N3rdyTesouro | MySql est\u00e1 ativado nas configura\u00e7\u00d5es");
+            mysql.setEnabled(true);
             mysql.setAddress(config.getString("mysql.address"));
             mysql.setPort(config.getInt("mysql.port"));
             mysql.setUser(config.getString("mysql.user"));
@@ -61,18 +69,20 @@ public class main extends JavaPlugin implements Listener {
             public void run(){
                 onTick.OnTickEvent();
             }
-        }.runTaskTimer(this, 0L, 5L);
+        }.runTaskTimer(this, 0L, 5L); //15L
 
         this.getCommand("end").setExecutor(new br.com.iagofragnan.commands.end());
         this.getCommand("arena").setExecutor(new br.com.iagofragnan.commands.arena());
+        this.getCommand("distance").setExecutor(new br.com.iagofragnan.commands.distance());
         this.getCommand("test").setExecutor(new br.com.iagofragnan.commands.test());
-        this.getCommand("debug").setExecutor(new br.com.iagofragnan.commands.debug());
+        this.getCommand("signal").setExecutor(new signal());
         this.getCommand("start").setExecutor(new br.com.iagofragnan.commands.start());
         this.getCommand("timer").setExecutor(new br.com.iagofragnan.commands.timer());
     }
     @EventHandler
     public void onLoad(){
         Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "N3rdyTesouro | Carregando configura\u00e7\u00d5es...");
+        br.com.iagofragnan.models.protocollib.setProtocolManager(ProtocolLibrary.getProtocolManager());
         config.addDefault("arduino.port", "COM1");
         config.addDefault("mysql.enable", false);
         config.addDefault("mysql.address", "127.0.0.1");
@@ -83,6 +93,8 @@ public class main extends JavaPlugin implements Listener {
         config.addDefault("mysql.table", "Jogadores");
         config.options().copyDefaults(true);
         saveConfig();
+
+
 
 
     }
