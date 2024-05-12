@@ -1,7 +1,7 @@
 package br.com.iagofragnan.events;
 
 import br.com.iagofragnan.models.player;
-import br.com.iagofragnan.models.scoreboard;
+import br.com.iagofragnan.controller.scoreboard;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -19,7 +19,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-import static br.com.iagofragnan.models.scoreboard.createScoreboard;
+import static br.com.iagofragnan.controller.scoreboard.createScoreboard;
 
 public class pattern implements Listener {
     @EventHandler
@@ -33,7 +33,7 @@ public class pattern implements Listener {
         e.getPlayer().getInventory().clear();
         e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 0, 67, 0, 0, 0));
         br.com.iagofragnan.models.scoreboard mysb = new br.com.iagofragnan.models.scoreboard();
-        createScoreboard(e.getPlayer(), scoreboard.states.Idle);
+        br.com.iagofragnan.controller.scoreboard.createScoreboard(e.getPlayer(), br.com.iagofragnan.models.scoreboard.states.Idle);
     }
 
     @EventHandler

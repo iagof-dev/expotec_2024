@@ -3,7 +3,7 @@ package br.com.iagofragnan.events;
 import br.com.iagofragnan.controller.game;
 import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.models.player;
-import br.com.iagofragnan.models.scoreboard;
+import br.com.iagofragnan.controller.scoreboard;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
