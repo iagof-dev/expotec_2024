@@ -2,6 +2,7 @@ package br.com.iagofragnan.controller;
 
 import br.com.iagofragnan.models.arena;
 import br.com.iagofragnan.models.player;
+import br.com.iagofragnan.models.scoreboard;
 import br.com.iagofragnan.models.timer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -29,7 +30,6 @@ public class game {
     }
     public static void end(){
         game.setPlaying(false);
-        player.getPlayerObj().sendMessage("Deletando a ultima arena.");
         br.com.iagofragnan.models.arena.DeleteLastArena();
         br.com.iagofragnan.models.player.setSetupNameFinished(false);
         Location spawn = new Location(player.getWorld(), 0, 66, 0);
@@ -39,6 +39,7 @@ public class game {
         mysql.registerTime(player.getPlayerName(), getRounds(),timer.getStartTime(), timer.getEndTime());
         player.setPlayerName(null);
         player.setSetupNameFinished(false);
+        br.com.iagofragnan.models.scoreboard.createScoreboard(player.getPlayerObj(), scoreboard.states.Idle);
         arena.DeleteLastArena();
         game.resetRounds();
     }

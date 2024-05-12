@@ -39,7 +39,7 @@ public class main extends JavaPlugin implements Listener {
 
 
         if(config.getBoolean("mysql.enable")){
-            Bukkit.getConsoleSender().sendMessage("N3rdyTesouro | MySql est\u00e1 ativado nas configura\u00e7\u00d5es");
+            Bukkit.getConsoleSender().sendMessage("N3rdyTesouro | MySql est\u00e1 ativo nas configura\u00e7\u00d5es");
             mysql.setEnabled(true);
             mysql.setAddress(config.getString("mysql.address"));
             mysql.setPort(config.getInt("mysql.port"));
@@ -50,7 +50,7 @@ public class main extends JavaPlugin implements Listener {
         }
 
 
-        Bukkit.getConsoleSender().sendMessage("N3rdyTesouro |" + ChatColor.GREEN + "Inicializado!");
+        Bukkit.getConsoleSender().sendMessage("N3rdyTesouro |" + ChatColor.GREEN + " Inicializado!");
         Bukkit.getServer().getWorld("world").setStorm(false);
         Bukkit.getServer().getWorld("world").setTime(3000);
 
@@ -78,6 +78,7 @@ public class main extends JavaPlugin implements Listener {
         this.getCommand("signal").setExecutor(new signal());
         this.getCommand("start").setExecutor(new br.com.iagofragnan.commands.start());
         this.getCommand("timer").setExecutor(new br.com.iagofragnan.commands.timer());
+        this.getCommand("sb").setExecutor(new br.com.iagofragnan.commands.sb());
     }
     @EventHandler
     public void onLoad(){

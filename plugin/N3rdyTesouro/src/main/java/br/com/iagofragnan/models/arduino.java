@@ -20,11 +20,11 @@ public class arduino {
         boolean result = porta.openPort();
         if (result){
             SerialOut = porta.getOutputStream();
-            Bukkit.getConsoleSender().sendMessage("§b ARDUINO | Porta conex\u00e3o estabilizada ("+ PortCOM +").");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "ARDUINO | Porta conex\u00e3o estabilizada ("+ PortCOM +").");
             isWorking = true;
         }
         else
-            Bukkit.getConsoleSender().sendMessage("§d ARDUINO | Erro! n\u00e3o h\u00e1 conex\u00e3o com porta serial ("+ PortCOM +")");
+            Bukkit.getConsoleSender().sendMessage( ChatColor.RED + "ARDUINO | Erro! n\u00e3o h\u00e1 conex\u00e3o com porta serial ("+ PortCOM +")");
         return isWorking;
     }
 

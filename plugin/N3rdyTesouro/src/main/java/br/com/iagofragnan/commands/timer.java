@@ -18,6 +18,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
@@ -51,6 +52,19 @@ public class timer implements CommandExecutor {
         else if(args[0].equals("save")){
             Integer value = Integer.parseInt(args[1]);
             br.com.iagofragnan.controller.mysql.registerTime("exemplo", value, getStartTime(), getEndTime());
+        }
+        else if(args[0].equals("calc")){
+            Duration duration = Duration.between(br.com.iagofragnan.models.timer.getStartTime(), LocalTime.now());
+            long totalSeconds = duration.getSeconds();
+            long hours = totalSeconds / 3600;
+            long minutes = (totalSeconds % 3600) / 60;
+            long seconds = totalSeconds % 60;
+            int nanos = duration.getNano();
+            int milliseconds = nanos / 1000000;
+
+            String value = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
+
+            p.sendMessage("Valor Calculado: " + value);
         }
         else{
             p.sendMessage(ChatColor.RED + "Erro!");

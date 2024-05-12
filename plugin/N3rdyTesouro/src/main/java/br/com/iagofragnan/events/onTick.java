@@ -3,6 +3,7 @@ package br.com.iagofragnan.events;
 import br.com.iagofragnan.controller.game;
 import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.models.player;
+import br.com.iagofragnan.models.scoreboard;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -11,13 +12,13 @@ public class onTick {
 
 
     public static void OnTickEvent(){
-
-
-        if(!arduino.isWorking || !game.isPlaying() || player.getPlayerObj() == null) return;
-
-
         Player p = player.getPlayerObj();
-        int radius = 60;
+
+        if(game.isPlaying()) scoreboard.updatePlayingScoreboard(p);
+
+        if(!arduino.isWorking || !(game.isPlaying()) || player.getPlayerObj() == null) return;
+
+        int radius = 40; //OG: 60
 
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {

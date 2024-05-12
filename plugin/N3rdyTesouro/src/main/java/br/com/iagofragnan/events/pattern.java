@@ -1,6 +1,8 @@
 package br.com.iagofragnan.events;
 
 import br.com.iagofragnan.models.player;
+import br.com.iagofragnan.models.scoreboard;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,6 +19,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
+import static br.com.iagofragnan.models.scoreboard.createScoreboard;
+
 public class pattern implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
@@ -28,6 +32,8 @@ public class pattern implements Listener {
         e.setJoinMessage("");
         e.getPlayer().getInventory().clear();
         e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 0, 67, 0, 0, 0));
+        br.com.iagofragnan.models.scoreboard mysb = new br.com.iagofragnan.models.scoreboard();
+        createScoreboard(e.getPlayer(), scoreboard.states.Idle);
     }
 
     @EventHandler
@@ -70,6 +76,8 @@ public class pattern implements Listener {
         //
 
         //e.setCancelled(true);
+
+        //e.getPlayer().sendMessage(ChatColor.RED + "Erro! " + ChatColor.WHITE + "Voc\u00ea n\u00e3o tem permiss\u00e3o usar de comandos.");
     }
 
     @EventHandler

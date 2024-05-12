@@ -2,6 +2,7 @@ package br.com.iagofragnan.events;
 
 import br.com.iagofragnan.models.arena;
 import br.com.iagofragnan.models.player;
+import br.com.iagofragnan.models.timer;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,6 +10,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import java.time.Duration;
+import java.time.LocalTime;
 
 
 public class treasure implements Listener {
@@ -33,8 +37,18 @@ public class treasure implements Listener {
 
         Location loc = new Location(p.getWorld(), e.getClickedBlock().getX(), e.getClickedBlock().getY() + 1, e.getClickedBlock().getZ());
 
+        Duration duration = Duration.between(LocalTime.now(), timer.getStartTime());
+        long totalSeconds = duration.getSeconds();
+        long hours = totalSeconds / 3600;
+        long minutes = (totalSeconds % 3600) / 60;
+        long seconds = totalSeconds % 60;
+        int nanos = duration.getNano();
+        int milliseconds = nanos / 1000000;
 
-        p.sendTitle(ChatColor.GREEN + "BOA!", "Voc\u00ea encontrou o ba\u00fa! (0:00:00)", 10, 30, 10);
+        String value = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
+
+
+        p.sendTitle(ChatColor.GREEN + "BOA!", "Voc\u00ea encontrou o ba\u00fa! ("+ value +")", 10, 30, 10);
         e.getPlayer().playSound(p.getLocation(), Sound.BLOCK_NOTE_HARP, 1f, 1f);
         p.spawnParticle(Particle.VILLAGER_HAPPY, loc, 10);
 

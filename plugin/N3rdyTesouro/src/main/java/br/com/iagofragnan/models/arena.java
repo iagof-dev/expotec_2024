@@ -41,7 +41,7 @@ public class arena {
         if(p.hasPotionEffect(PotionEffectType.SPEED)){
             p.removePotionEffect(PotionEffectType.SPEED);
         }
-        p.sendTitle("Gerando arena", "Aguarde estamos criando uma arena", 5, 5, 5);
+        p.sendTitle("Gerando arena", "Aguarde estamos criando uma arena.", 5, 5, 5);
 
         ItemStack shovel = new ItemStack(Material.DIAMOND_SPADE, 1);
         shovel.addEnchantment(Enchantment.DIG_SPEED, 1);
@@ -93,13 +93,19 @@ public class arena {
         Location chest = new Location(getWorld(), chestRandomSeed_X, chestRandomSeed_Y, chestRandomSeed_Z);
         chest.getBlock().setType(Material.CHEST);
 
-        br.com.iagofragnan.controller.game.addRounds(1);
-        game.setPlaying(true);
-        setStartTime(LocalTime.now());
 
         Bukkit.getConsoleSender().sendMessage("DEBUG | Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
         Location TeleportLocation = new Location(player.getWorld(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
         p.teleport(TeleportLocation);
+
+        br.com.iagofragnan.controller.game.addRounds(1);
+
+        if(!(game.isPlaying())){
+            game.setPlaying(true);
+            setStartTime(LocalTime.now());
+        }
+
+
         treasure.setIsFound(false);
     }
 
