@@ -37,3 +37,7 @@ commands:
     description: debug command to test scoreboard
     usage: /sb [criar]
     permission: n3rdytesouro.sb
+  ranking:
+    description: debug command to test ranking
+    usage: /ranking [criar/atualizar/deletar]
+    permission: n3rdytesouro.ranking

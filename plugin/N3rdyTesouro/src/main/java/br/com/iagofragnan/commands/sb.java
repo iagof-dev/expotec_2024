@@ -14,7 +14,7 @@ public class sb implements CommandExecutor {
         if (!(sender instanceof Player)) return false;
 
         Player p = (Player) sender;
-        br.com.iagofragnan.models.scoreboard mysb = new br.com.iagofragnan.models.scoreboard();
+        br.com.iagofragnan.controller.scoreboard mysb = new br.com.iagofragnan.controller.scoreboard();
 
         if(args[0].equals("clobby")) {
             createScoreboard(p, scoreboard.states.Idle);

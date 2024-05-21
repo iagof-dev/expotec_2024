@@ -117,6 +117,12 @@ public class scoreboard {
         Scoreboard oldSB = p.getScoreboard();
         Team tm1 = oldSB.getTeam("team1");
 
+        if(tm1 == null) {
+            createPlayingScoreboard(p);
+            tm1 = oldSB.getTeam("team1");
+
+        }
+
         tm1.setSuffix(ChatColor.GREEN + value);
 
 

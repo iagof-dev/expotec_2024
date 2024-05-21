@@ -79,6 +79,7 @@ public class main extends JavaPlugin implements Listener {
         this.getCommand("start").setExecutor(new br.com.iagofragnan.commands.start());
         this.getCommand("timer").setExecutor(new br.com.iagofragnan.commands.timer());
         this.getCommand("sb").setExecutor(new br.com.iagofragnan.commands.sb());
+        this.getCommand("ranking").setExecutor(new br.com.iagofragnan.commands.ranking());
     }
     @EventHandler
     public void onLoad(){

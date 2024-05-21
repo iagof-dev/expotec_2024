@@ -22,8 +22,6 @@ public class db {
     }
 
     public static void registrarJogador(){
-
-
         String sql = "INSERT INTO" + table + " VALUES (default, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);

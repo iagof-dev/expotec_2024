@@ -11,7 +11,7 @@ public class ranking {
     public static boolean createRanking(){
 
 
-        return false;
+        return true;
     }
     public static boolean updateRanking(){
 
