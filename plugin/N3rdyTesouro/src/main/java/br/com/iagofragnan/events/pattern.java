@@ -1,8 +1,10 @@
 package br.com.iagofragnan.events;
 
+import br.com.iagofragnan.main;
+import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.models.player;
-import br.com.iagofragnan.controller.scoreboard;
-import org.bukkit.ChatColor;
+import br.com.iagofragnan.models.scoreboard.states;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,13 +20,21 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
-import static br.com.iagofragnan.controller.scoreboard.createScoreboard;
 
 public class pattern implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
         player.setPlayerObj(e.getPlayer());
+        new BukkitRunnable(){
+            public void run(){
+                e.getPlayer().sendMessage("criando scoreboard");
+                br.com.iagofragnan.controller.scoreboard sb = new br.com.iagofragnan.controller.scoreboard();
+                sb.createScoreboard(e.getPlayer(), br.com.iagofragnan.models.scoreboard.states.Idle);
+                e.getPlayer().sendMessage("scoreboard criada");
+            }
+        }.runTaskLater(br.com.iagofragnan.main.getThePlugin(), 20L);
         player.setWorld(e.getPlayer().getWorld());
         e.getPlayer().getInventory().clear();
         e.getPlayer().setGameMode(GameMode.SURVIVAL);
@@ -32,8 +42,7 @@ public class pattern implements Listener {
         e.setJoinMessage("");
         e.getPlayer().getInventory().clear();
         e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 0, 67, 0, 0, 0));
-        br.com.iagofragnan.models.scoreboard mysb = new br.com.iagofragnan.models.scoreboard();
-        br.com.iagofragnan.controller.scoreboard.createScoreboard(e.getPlayer(), br.com.iagofragnan.models.scoreboard.states.Idle);
+
     }
 
     @EventHandler
@@ -58,14 +67,12 @@ public class pattern implements Listener {
     public void PlayerBuild(BlockDamageEvent e){
         if(e.getPlayer().getGameMode() == GameMode.CREATIVE) return;
         Block byblock = e.getBlock();
-        switch(byblock.getType()){
-            case SAND:
-                e.setCancelled(false);
-                break;
-            default:
-                e.setCancelled(true);
-                break;
+
+        if(byblock.getType() == Material.SAND){
+            e.setCancelled(false);
+            return;
         }
+        e.setCancelled(true);
     }
 
     @EventHandler

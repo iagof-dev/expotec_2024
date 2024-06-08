@@ -38,7 +38,6 @@ public class scoreboard {
             case Playing:
                 createPlayingScoreboard(p);
                 break;
-
         }
         return true;
     }
@@ -98,6 +97,7 @@ public class scoreboard {
 
         setSbPlayingCreated(true);
         p.setScoreboard(getSbPlaying());
+        updatePlayingScoreboard(p);
     }
 
 

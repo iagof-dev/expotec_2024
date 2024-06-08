@@ -17,10 +17,16 @@ public class sb implements CommandExecutor {
         br.com.iagofragnan.controller.scoreboard mysb = new br.com.iagofragnan.controller.scoreboard();
 
         if(args[0].equals("clobby")) {
-            createScoreboard(p, scoreboard.states.Idle);
+            boolean result = createScoreboard(p, scoreboard.states.Idle);
+            if(result){
+                p.sendMessage("Scoreboard criada.");
+            }
         }
         if(args[0].equals("cplaying")) {
-            createScoreboard(p, scoreboard.states.Playing);
+            boolean result = createScoreboard(p, scoreboard.states.Playing);
+            if(result){
+                p.sendMessage("Scoreboard criada.");
+            }
         }
 
 
