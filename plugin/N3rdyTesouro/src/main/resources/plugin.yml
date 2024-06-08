@@ -41,3 +41,7 @@ commands:
     description: debug command to test ranking
     usage: /ranking [criar/atualizar/deletar]
     permission: n3rdytesouro.ranking
+  api:
+    description: debug command to test apí
+    usage: /api
+    permission: n3rdytesouro.api

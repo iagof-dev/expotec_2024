@@ -23,6 +23,7 @@ dependencies {
     compileOnly("com.github.decentsoftware-eu:decentholograms:2.8.6")
     implementation("com.fazecast:jSerialComm:2.6.2")
     implementation("de.rapha149.signgui:signgui:2.3.2")
+    implementation("net.sourceforge.htmlunit:htmlunit:2.51.0")
 }
 
 

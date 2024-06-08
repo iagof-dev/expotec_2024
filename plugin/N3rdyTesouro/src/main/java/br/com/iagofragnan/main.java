@@ -5,6 +5,7 @@ import br.com.iagofragnan.events.pattern;
 import br.com.iagofragnan.events.onTick;
 import br.com.iagofragnan.events.treasure;
 import br.com.iagofragnan.models.arduino;
+import br.com.iagofragnan.settings.api;
 import br.com.iagofragnan.settings.mysql;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -49,6 +50,12 @@ public class main extends JavaPlugin implements Listener {
             mysql.setTable(config.getString("mysql.table"));
         }
 
+        if(config.getBoolean("api.enable")){
+            Bukkit.getConsoleSender().sendMessage("N3rdyTesouro | API est\u00e1 ativo nas configura\u00e7\u00d5es");
+            api.setApiEnable(true);
+            api.setApiURL(config.getString("api.url"));
+        }
+
 
         Bukkit.getConsoleSender().sendMessage("N3rdyTesouro |" + ChatColor.GREEN + " Inicializado!");
         Bukkit.getServer().getWorld("world").setStorm(false);
@@ -80,12 +87,15 @@ public class main extends JavaPlugin implements Listener {
         this.getCommand("timer").setExecutor(new br.com.iagofragnan.commands.timer());
         this.getCommand("sb").setExecutor(new br.com.iagofragnan.commands.sb());
         this.getCommand("ranking").setExecutor(new br.com.iagofragnan.commands.ranking());
+        this.getCommand("api").setExecutor(new br.com.iagofragnan.commands.api());
     }
     @EventHandler
     public void onLoad(){
         Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "N3rdyTesouro | Carregando configura\u00e7\u00d5es...");
         br.com.iagofragnan.models.protocollib.setProtocolManager(ProtocolLibrary.getProtocolManager());
         config.addDefault("arduino.port", "COM1");
+        config.addDefault("api.enable", false);
+        config.addDefault("api.url", "localhost:3000");
         config.addDefault("mysql.enable", false);
         config.addDefault("mysql.address", "127.0.0.1");
         config.addDefault("mysql.user", "root");
