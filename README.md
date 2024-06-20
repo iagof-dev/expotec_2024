@@ -33,6 +33,9 @@ Edição de Textura
 ```
 arduino:
   port: COM1
+api:
+  enable: false
+  url: http://localhost:80/
 mysql:
   enable: false
   address: 127.0.0.1
@@ -41,19 +44,18 @@ mysql:
   port: 3306
   database: N3rdyTesouro
   table: Jogadores
+
 ```
 
 
-## TODO
+## Librarys/Frameworks Used:
 
-* Input de nome com bigorna para registrar no banco de dados
+* [Spigot (Minecraft Server)](https://www.spigotmc.org/wiki/spigot-plugin-development/)
 
-* Calcular tempo
+* [DecentHolograms](https://github.com/DecentSoftware-eu/DecentHolograms)
 
-* Insert no MySql
+* [SignGUI](https://github.com/Rapha149/SignGUI)
 
-* Leaderboards no holograma
+* [ProtocolLib](https://github.com/dmulloy2/ProtocolLib)
 
-* Calcular e pegar tempo médio para cada partida
-
-* Tela de Carregamento (abobora)
+* [Images](https://github.com/Andavin/Images)
