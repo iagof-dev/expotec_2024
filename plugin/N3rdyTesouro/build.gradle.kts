@@ -24,6 +24,7 @@ dependencies {
     implementation("com.fazecast:jSerialComm:2.6.2")
     implementation("de.rapha149.signgui:signgui:2.3.2")
     implementation("net.sourceforge.htmlunit:htmlunit:2.51.0")
+    implementation("org.json:json:20220320")
 }
 
 

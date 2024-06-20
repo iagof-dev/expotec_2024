@@ -1,62 +1,52 @@
 package br.com.iagofragnan.controller;
 
+import org.bukkit.Bukkit;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import javax.net.ssl.HttpsURLConnection;
+import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
-import java.util.Scanner;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class api {
 
-    public static void getRanking() {
-        try {
-            URL urlObj = new URL(br.com.iagofragnan.settings.api.getApiURL() + "listar/ranking");
-            HttpsURLConnection connection = (HttpsURLConnection) urlObj.openConnection();
-            connection.setRequestMethod("GET");
+    public static LinkedHashMap<String, String> getRanking() {
+        LinkedHashMap<String, String> result = new LinkedHashMap<>();
+        HttpClient client = HttpClient.newHttpClient();
 
-            int responseCode = connection.getResponseCode();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(br.com.iagofragnan.settings.api.getApiURL() + "/listar/ranking/"))
+                .build();
+        try{
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                StringBuilder sb = new StringBuilder();
-                Scanner scanner = new Scanner(connection.getInputStream());
-                while (scanner.hasNext()) {
-                    sb.append(scanner.nextLine());
+            if (response.statusCode() == 200) {
+                String responseBody = response.body();
+
+                JSONObject jsonResponse = new JSONObject(responseBody);
+                JSONArray dataArray = jsonResponse.getJSONArray("DATA");
+
+                if(dataArray.length() <= 0 || dataArray == null) {
+                    Bukkit.getConsoleSender().sendMessage("Houve um erro na hora de obter dados da API.");
                 }
-                System.out.println(sb);
 
-            } else {
-                System.out.println("Error in sending a GET request");
+                for (int i = 0; i < dataArray.length(); i++) {
+                    JSONObject dataObject = dataArray.getJSONObject(i);
+                    int id = dataObject.getInt("id");
+                    String name = dataObject.getString("name");
+                    String timePerRound = dataObject.getString("time_per_round");
+                    result.put(name, timePerRound);
+                }
             }
         }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-
+        catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
+        return result;
     }
-
-    public static void getTopOne() {
-        try {
-            URL urlObj = new URL(br.com.iagofragnan.settings.api.getApiURL() + "listar/top");
-            HttpsURLConnection connection = (HttpsURLConnection) urlObj.openConnection();
-            connection.setRequestMethod("GET");
-
-            int responseCode = connection.getResponseCode();
-
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                StringBuilder sb = new StringBuilder();
-                Scanner scanner = new Scanner(connection.getInputStream());
-                while (scanner.hasNext()) {
-                    sb.append(scanner.nextLine());
-                }
-                System.out.println(sb);
-
-            } else {
-                System.out.println("Error in sending a GET request");
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-
-        }
-    }
-
 }

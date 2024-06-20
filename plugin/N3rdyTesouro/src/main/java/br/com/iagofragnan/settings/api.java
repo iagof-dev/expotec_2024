@@ -5,7 +5,7 @@ public class api {
     private static String apiURL;
 
 
-    public boolean isApiEnable() {
+    public static boolean isApiEnabled() {
         return apiEnable;
     }
 

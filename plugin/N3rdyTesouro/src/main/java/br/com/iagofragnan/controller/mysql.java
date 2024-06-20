@@ -33,6 +33,12 @@ public class mysql {
         else{
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "MySql desativado, pulando função de salvar.");
         }
+        if(br.com.iagofragnan.settings.api.isApiEnabled()){
+
+        }
+        else{
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Api desativada, pulando função de salvar.");
+        }
 
     }
 }

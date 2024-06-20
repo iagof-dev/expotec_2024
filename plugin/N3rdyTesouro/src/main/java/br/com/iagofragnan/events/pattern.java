@@ -29,10 +29,8 @@ public class pattern implements Listener {
         player.setPlayerObj(e.getPlayer());
         new BukkitRunnable(){
             public void run(){
-                e.getPlayer().sendMessage("criando scoreboard");
                 br.com.iagofragnan.controller.scoreboard sb = new br.com.iagofragnan.controller.scoreboard();
                 sb.createScoreboard(e.getPlayer(), br.com.iagofragnan.models.scoreboard.states.Idle);
-                e.getPlayer().sendMessage("scoreboard criada");
             }
         }.runTaskLater(br.com.iagofragnan.main.getThePlugin(), 20L);
         player.setWorld(e.getPlayer().getWorld());
