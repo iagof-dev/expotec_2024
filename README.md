@@ -20,7 +20,7 @@ verde: que pode estar ao redor do jogador
 
 ## Arduino + Sketch
 
-[projeto](https://www.tinkercad.com/things/4CsAqzCUjmf-expotec-minecraft-2024?sharecode=N_ip5fn6wPsz_1O8KaItVAOZYmll_KhuWK5MK8uHq5U)
+[TinkerCad Project](https://www.tinkercad.com/things/4CsAqzCUjmf-expotec-minecraft-2024?sharecode=N_ip5fn6wPsz_1O8KaItVAOZYmll_KhuWK5MK8uHq5U)
 
 ## Configurações
 
