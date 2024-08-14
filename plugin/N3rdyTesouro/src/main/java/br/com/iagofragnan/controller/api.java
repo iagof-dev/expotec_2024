@@ -1,52 +1,54 @@
 package br.com.iagofragnan.controller;
 
-import org.bukkit.Bukkit;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import eu.decentsoftware.holograms.api.DHAPI;
+import org.bukkit.ChatColor;
+
+import java.io.*;
+import java.lang.reflect.Type;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 public class api {
+    br.com.iagofragnan.models.api api;
+    public api(){
+        api = new br.com.iagofragnan.models.api();
+    }
 
-    public static LinkedHashMap<String, String> getRanking() {
-        LinkedHashMap<String, String> result = new LinkedHashMap<>();
-        HttpClient client = HttpClient.newHttpClient();
+    public String getRanking() {
+        return api.makeGetRequest("/listar/ranking/");
+    }
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(br.com.iagofragnan.settings.api.getApiURL() + "/listar/ranking/"))
-                .build();
-        try{
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    public String[] getTopOne(){
+        String response = api.makeGetRequest("/listar/top");
 
-            if (response.statusCode() == 200) {
-                String responseBody = response.body();
-
-                JSONObject jsonResponse = new JSONObject(responseBody);
-                JSONArray dataArray = jsonResponse.getJSONArray("DATA");
-
-                if(dataArray.length() <= 0 || dataArray == null) {
-                    Bukkit.getConsoleSender().sendMessage("Houve um erro na hora de obter dados da API.");
-                }
-
-                for (int i = 0; i < dataArray.length(); i++) {
-                    JSONObject dataObject = dataArray.getJSONObject(i);
-                    int id = dataObject.getInt("id");
-                    String name = dataObject.getString("name");
-                    String timePerRound = dataObject.getString("time_per_round");
-                    result.put(name, timePerRound);
-                }
-            }
+        Gson gson = new Gson();
+        Type type = new TypeToken<HashMap<String, Object>>(){}.getType();
+        HashMap<String, Object> resultMap = gson.fromJson(response, type);
+        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+        List<Map<String, Object>> dataList = gson.fromJson(gson.toJson(resultMap.get("DATA")), listType);
+        String[] result = new String[2];
+        for (Map<String, Object> data : dataList) {
+            result[0] = data.get("name").toString();
+            result[1] = data.get("time_per_game").toString();
         }
-        catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+
         return result;
     }
+
+    public void insertOnRanking(String name, String time_per_round, String time_per_game){
+        Map<String, String> data = new LinkedHashMap<>();
+        data.put("name", name);
+        data.put("time_per_round", time_per_round);
+        data.put("time_per_game", time_per_game);
+        String response = api.makePostRequest("/inserir/", data);
+        System.out.println(response);
+    }
+
+
+
+
 }

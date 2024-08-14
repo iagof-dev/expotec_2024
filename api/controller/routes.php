@@ -6,31 +6,31 @@ require (__DIR__ . '/../classes/database.php');
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
 
-Router::get('/', function() {
+Router::get('/expotec2024_n3rdy/', function() {
     echo(json_encode(['status' => 'success', 'message' => 'Sem parâmetros']));
     die();
 });
 
-Router::get('/listar', function() {
+Router::get('/expotec2024_n3rdy/listar', function() {
     $database = new db();
     $result = $database->query('SELECT * from players;');
     echo(json_encode($result));
     die();
 });
-Router::get('/listar/ranking', function() {
+Router::get('/expotec2024_n3rdy/listar/ranking', function() {
     $database = new db();
     $result = $database->query('SELECT * FROM players order by time_per_round asc;');
     echo(json_encode($result));
     die();
 });
 
-Router::get('/listar/top', function() {
+Router::get('/expotec2024_n3rdy/listar/top', function() {
     $database = new db();
     $result = $database->query('SELECT * FROM players order by time_per_round asc LIMIT 1;');
     echo(json_encode($result));
     die();
 });
-Router::post('/inserir/', function() {
+Router::post('/expotec2024_n3rdy/inserir/', function() {
     $database = new db();
 
     if(!isset($_POST) || empty($_POST['name']) || empty($_POST['time_per_round']) || empty($_POST['time_per_game'])){

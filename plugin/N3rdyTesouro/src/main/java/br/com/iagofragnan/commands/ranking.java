@@ -9,20 +9,24 @@ import org.bukkit.entity.Player;
 public class ranking implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
+        br.com.iagofragnan.controller.hologram hl = new br.com.iagofragnan.controller.hologram();
+
+
         Player p = (Player) sender;
         if(args[0].equals("criar")){
             p.sendMessage("Criando holograma do ranking");
-            br.com.iagofragnan.models.hologram.create();
+            hl.createRanking();
             p.sendMessage("Tentando adicionar valores ao ranking");
             return true;
         }
         else if(args[0].equals("atualizar")){
             p.sendMessage("Tentando atualizar holograma de ranking");
+            hl.updateRanking();
             return true;
         }
         else if(args[0].equals("remover")){
             p.sendMessage("Tentando remover holograma de ranking");
-            br.com.iagofragnan.models.hologram.delete();
+            hl.deleteRanking();
             return true;
         }
         else{

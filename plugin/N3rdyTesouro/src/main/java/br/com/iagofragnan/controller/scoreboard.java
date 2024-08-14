@@ -18,6 +18,7 @@ import static br.com.iagofragnan.models.scoreboard.getSb;
 
 
 public class scoreboard {
+
     public scoreboard() {
         try{
             setSb(Bukkit.getScoreboardManager().getNewScoreboard()) ;
@@ -29,7 +30,8 @@ public class scoreboard {
         }
     }
 
-    public static boolean createScoreboard(Player p, states state){
+    public boolean createScoreboard(Player p, states state){
+        p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
         switch(state) {
             default:
             case Idle:
@@ -43,7 +45,7 @@ public class scoreboard {
     }
 
 
-    private static void createLobbyScoreboard(Player p) {
+    private void createLobbyScoreboard(Player p) {
         if (getM() == null) return;
 
         if(isSbCreated()){
@@ -57,22 +59,21 @@ public class scoreboard {
         objective.getScore("Ca\u00e7a ao Tesouro").setScore(5);
         objective.getScore(ChatColor.RED + " ").setScore(4);
         objective.getScore("Melhor Tempo:").setScore(3);
-        objective.getScore(ChatColor.GOLD + "N3rdyDev" + ChatColor.WHITE + " - 00:00:00").setScore(2);
+        api api = new api();
+        objective.getScore(ChatColor.GOLD + api.getTopOne()[0] + ChatColor.WHITE + " - " + api.getTopOne()[1]).setScore(2);
         objective.getScore(ChatColor.WHITE + " ").setScore(1);
         objective.getScore(ChatColor.GRAY + "iagofragnan.com.br").setScore(0);
         p.setScoreboard(getSb());
         setSbCreated(true);
     }
 
-    private static void createPlayingScoreboard(Player p) {
+    private void createPlayingScoreboard(Player p) {
         if (getM() == null) return;
-
 
         if(isSbPlayingCreated()){
             p.setScoreboard(getSbPlaying());
             return;
         }
-
 
         Objective objective = getSbPlaying().registerNewObjective("playing", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -101,7 +102,7 @@ public class scoreboard {
     }
 
 
-    public static void updatePlayingScoreboard(Player p){
+    public void updatePlayingScoreboard(Player p){
         if(p.getScoreboard().getTeam("team1") == null) createScoreboard(p, states.Playing);
 
         Duration duration = Duration.between(timer.getStartTime(), LocalTime.now());

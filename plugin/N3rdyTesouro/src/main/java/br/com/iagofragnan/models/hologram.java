@@ -28,15 +28,6 @@ public class hologram {
         DHAPI.addHologramLine(hologram, line);
     }
 
-    public static void getall(){
-
-        //mysql
-        insert("teste");
-        insert("teste");
-        insert("teste");
-        insert("teste");
-    }
-
     public static void delete(){
         hologram.delete();
     }
