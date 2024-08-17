@@ -34,7 +34,8 @@ public class mysql {
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "MySql desativado, pulando função de salvar.");
         }
         if(br.com.iagofragnan.settings.api.isApiEnabled()){
-
+            br.com.iagofragnan.controller.api api = new br.com.iagofragnan.controller.api();
+            api.insertOnRanking(playerName, sql_TimePerRound, sql_TimePerGame);
         }
         else{
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Api desativada, pulando função de salvar.");

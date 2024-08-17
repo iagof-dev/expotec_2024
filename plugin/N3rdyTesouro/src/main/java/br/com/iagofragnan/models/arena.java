@@ -2,6 +2,7 @@ package br.com.iagofragnan.models;
 
 
 import br.com.iagofragnan.controller.game;
+import br.com.iagofragnan.controller.scoreboard;
 import br.com.iagofragnan.events.treasure;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -97,6 +98,8 @@ public class arena {
         Bukkit.getConsoleSender().sendMessage("DEBUG | Arena gerada em X: " + randomLocation.getX() + ", Y: " + randomLocation.getY() + ", Z: " + randomLocation.getZ());
         Location TeleportLocation = new Location(player.getWorld(), randomLocation.getX() + size_x / 2.0, Max_Y + 7, randomLocation.getZ() + size_z / 2.0);
         p.teleport(TeleportLocation);
+        br.com.iagofragnan.controller.scoreboard sb = new scoreboard();
+        sb.createScoreboard(p, br.com.iagofragnan.models.scoreboard.states.Playing);
 
         br.com.iagofragnan.controller.game.addRounds(1);
 

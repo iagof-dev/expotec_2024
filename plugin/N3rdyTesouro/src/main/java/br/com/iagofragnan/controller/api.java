@@ -44,8 +44,7 @@ public class api {
         data.put("name", name);
         data.put("time_per_round", time_per_round);
         data.put("time_per_game", time_per_game);
-        String response = api.makePostRequest("/inserir/", data);
-        System.out.println(response);
+        api.makePostRequest("/inserir/", data);
     }
 
 

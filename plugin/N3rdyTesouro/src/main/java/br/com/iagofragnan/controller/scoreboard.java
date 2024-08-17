@@ -1,43 +1,42 @@
 package br.com.iagofragnan.controller;
 
 import br.com.iagofragnan.models.timer;
-import org.bukkit.Bukkit;
+import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
 
 import java.time.Duration;
 import java.time.LocalTime;
 
 import static br.com.iagofragnan.models.scoreboard.*;
-import static br.com.iagofragnan.models.scoreboard.getM;
-import static br.com.iagofragnan.models.scoreboard.getSb;
+
 
 
 public class scoreboard {
 
-    public scoreboard() {
-        try{
-            setSb(Bukkit.getScoreboardManager().getNewScoreboard()) ;
-            setSbPlaying(Bukkit.getScoreboardManager().getNewScoreboard());
-            setM(Bukkit.getScoreboardManager());
-        }
-        catch(Exception e){
-            Bukkit.getLogger().severe(e.getMessage());
-        }
+    //    PIOR JEITO DE CRIAR UMA SCOREBOARD
+    //    Mas preciso finalizar isso a tempo.
+
+    FastBoard board_idle;
+    FastBoard board_playing;
+    states active_state;
+
+    public FastBoard getBoard() {
+        return board_idle;
     }
 
     public boolean createScoreboard(Player p, states state){
-        p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+
+        if(p == null) return true;
+
         switch(state) {
             default:
             case Idle:
+                active_state = states.Idle;
                 createLobbyScoreboard(p);
                 break;
             case Playing:
+                active_state = states.Playing;
                 createPlayingScoreboard(p);
                 break;
         }
@@ -46,85 +45,83 @@ public class scoreboard {
 
 
     private void createLobbyScoreboard(Player p) {
-        if (getM() == null) return;
+        if(p == null) return;
+        board_idle = new FastBoard(p);
 
-        if(isSbCreated()){
-            p.setScoreboard(getSb());
-            return;
-        }
+        board_idle.updateTitle(ChatColor.BOLD + "Expotec 2024");
 
-        Objective objective = getSb().registerNewObjective("ranking", "dummy");
-        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(ChatColor.BOLD + "Expotec 2024");
-        objective.getScore("Ca\u00e7a ao Tesouro").setScore(5);
-        objective.getScore(ChatColor.RED + " ").setScore(4);
-        objective.getScore("Melhor Tempo:").setScore(3);
+
         api api = new api();
-        objective.getScore(ChatColor.GOLD + api.getTopOne()[0] + ChatColor.WHITE + " - " + api.getTopOne()[1]).setScore(2);
-        objective.getScore(ChatColor.WHITE + " ").setScore(1);
-        objective.getScore(ChatColor.GRAY + "iagofragnan.com.br").setScore(0);
-        p.setScoreboard(getSb());
-        setSbCreated(true);
+
+        board_idle.updateLines(
+                "Ca\u00e7a ao Tesouro",
+                "",
+                "Melhor Tempo:",
+                ChatColor.GOLD + api.getTopOne()[0] + ChatColor.WHITE + " - " + api.getTopOne()[1],
+                "",
+                ChatColor.GRAY + "iagofragnan.com.br"
+        );
     }
 
     private void createPlayingScoreboard(Player p) {
-        if (getM() == null) return;
+        if(p == null) return;
+        active_state = states.Playing;
+        board_playing = new FastBoard(p);
 
-        if(isSbPlayingCreated()){
-            p.setScoreboard(getSbPlaying());
-            return;
-        }
+        board_playing.updateTitle(ChatColor.BOLD + "Expotec 2024");
 
-        Objective objective = getSbPlaying().registerNewObjective("playing", "dummy");
-        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(ChatColor.BOLD + "Expotec 2024");
-        objective.getScore("Ca\u00e7a ao Tesouro").setScore(8);
-        objective.getScore(ChatColor.RED + " ").setScore(7);
-        objective.getScore("Melhor Tempo:").setScore(6);
-        objective.getScore(ChatColor.GOLD + "N3rdyDev" + ChatColor.WHITE + " - 00:00:00").setScore(5);
-        objective.getScore(ChatColor.DARK_RED + " ").setScore(4);
-        objective.getScore(ChatColor.GREEN + "Seu Tempo:").setScore(3);
-        //TEMPO AQUI
-        objective.getScore(ChatColor.WHITE + " ").setScore(1);
-        objective.getScore(ChatColor.GRAY + "iagofragnan.com.br").setScore(0);
+        board_playing.updateLines(
+                "Ca\u00e7a ao Tesouro",
+                "",
+                "Melhor Tempo:",
+                ChatColor.GOLD + "N3rdyDev" + ChatColor.WHITE + " - 00:00:00",
+                "",
+                ChatColor.GREEN + "Seu Tempo: 0:00:00.00",
+                "",
+                ChatColor.GRAY + "iagofragnan.com.br"
 
-        Team tm1 = getSbPlaying().registerNewTeam("team1");
-
-        String teamkey = ChatColor.GREEN.toString();
-
-        tm1.addEntry(teamkey);
-        tm1.setSuffix("00:00:00");
-        objective.getScore(teamkey).setScore(2);
-
-        setSbPlayingCreated(true);
-        p.setScoreboard(getSbPlaying());
-        updatePlayingScoreboard(p);
+        );
     }
 
 
-    public void updatePlayingScoreboard(Player p){
-        if(p.getScoreboard().getTeam("team1") == null) createScoreboard(p, states.Playing);
+    public void updateScoreboard(Player p){
+        if(p == null) return;
 
-        Duration duration = Duration.between(timer.getStartTime(), LocalTime.now());
-        long totalSeconds = duration.getSeconds();
-        long hours = totalSeconds / 3600;
-        long minutes = (totalSeconds % 3600) / 60;
-        long seconds = totalSeconds % 60;
-        int nanos = duration.getNano();
-        int milliseconds = nanos / 1000000;
-
-        String value = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
-
-        Scoreboard oldSB = p.getScoreboard();
-        Team tm1 = oldSB.getTeam("team1");
-
-        if(tm1 == null) {
-            createPlayingScoreboard(p);
-            tm1 = oldSB.getTeam("team1");
-
+        if(active_state == states.Idle){
+            createLobbyScoreboard(p);
+        }
+        if(!game.isPlaying() || active_state == states.Idle){
+            return;
         }
 
-        tm1.setSuffix(ChatColor.GREEN + value);
+        if(timer.getStartTime() != null){
+            Duration duration = Duration.between(timer.getStartTime(), LocalTime.now());
+            long totalSeconds = duration.getSeconds();
+            long hours = totalSeconds / 3600;
+            long minutes = (totalSeconds % 3600) / 60;
+            long seconds = totalSeconds % 60;
+            int nanos = duration.getNano();
+            int milliseconds = nanos / 1000000;
+
+            String value = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
+
+            board_playing = new FastBoard(p);
+
+            board_playing.updateTitle(ChatColor.BOLD + "Expotec 2024");
+
+            board_playing.updateLines(
+                    "Ca\u00e7a ao Tesouro",
+                    "",
+                    "Melhor Tempo:",
+                    ChatColor.GOLD + "N3rdyDev" + ChatColor.WHITE + " - 00:00:00",
+                    "",
+                    ChatColor.GREEN + "Seu Tempo: " + value,
+                    "",
+                    ChatColor.GRAY + "iagofragnan.com.br"
+
+            );
+
+        }
 
 
     }

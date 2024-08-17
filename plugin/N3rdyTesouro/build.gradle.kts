@@ -24,6 +24,7 @@ dependencies {
     implementation("com.fazecast:jSerialComm:2.6.2") // Communication on Serial Port
     implementation("de.rapha149.signgui:signgui:2.3.2") // Sign GUI for typing the name
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("fr.mrmicky:fastboard:2.1.3")
 }
 
 
@@ -37,5 +38,6 @@ tasks.withType<JavaCompile> {
 tasks.shadowJar {
     archiveClassifier.set("")
 }
+
 
 

@@ -37,6 +37,7 @@ public class game {
         timer.setEndTime(LocalTime.now());
         setIsRunning(false);
         mysql.registerTime(player.getPlayerName(), getRounds(),timer.getStartTime(), timer.getEndTime());
+
         player.setPlayerName(null);
         player.setSetupNameFinished(false);
         br.com.iagofragnan.controller.scoreboard sb = new br.com.iagofragnan.controller.scoreboard();

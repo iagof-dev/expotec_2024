@@ -3,6 +3,7 @@ package br.com.iagofragnan.events;
 import br.com.iagofragnan.controller.game;
 import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.models.player;
+import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -14,9 +15,10 @@ public class onTick {
     public static void OnTickEvent(){
         Player p = player.getPlayerObj();
 
+
         br.com.iagofragnan.controller.scoreboard sb = new br.com.iagofragnan.controller.scoreboard();
 
-        if(game.isPlaying()) sb.updatePlayingScoreboard(p);
+        sb.updateScoreboard(p);
 
         if(!arduino.isWorking || !(game.isPlaying()) || player.getPlayerObj() == null) return;
 
