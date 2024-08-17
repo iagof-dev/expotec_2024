@@ -18,6 +18,7 @@ public class onTick {
 
         br.com.iagofragnan.controller.scoreboard sb = new br.com.iagofragnan.controller.scoreboard();
 
+
         sb.updateScoreboard(p);
 
         if(!arduino.isWorking || !(game.isPlaying()) || player.getPlayerObj() == null) return;

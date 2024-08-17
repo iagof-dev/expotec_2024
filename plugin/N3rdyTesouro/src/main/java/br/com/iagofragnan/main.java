@@ -1,6 +1,7 @@
 package br.com.iagofragnan;
 
 import br.com.iagofragnan.commands.signal;
+import br.com.iagofragnan.controller.hologram;
 import br.com.iagofragnan.events.pattern;
 import br.com.iagofragnan.events.onTick;
 import br.com.iagofragnan.events.treasure;
@@ -51,6 +52,8 @@ public class main extends JavaPlugin implements Listener {
             api.setApiURL(config.getString("api.url"));
         }
 
+        br.com.iagofragnan.settings.ranking.setCoords(config.getString("ranking.coords"));
+
 
         Bukkit.getConsoleSender().sendMessage("N3rdyTesouro |" + ChatColor.GREEN + " Inicializado!");
         Bukkit.getServer().getWorld("world").setStorm(false);
@@ -73,6 +76,8 @@ public class main extends JavaPlugin implements Listener {
             }
         }.runTaskTimer(this, 0L, 5L); //15L
 
+
+
         this.getCommand("end").setExecutor(new br.com.iagofragnan.commands.end());
         this.getCommand("arena").setExecutor(new br.com.iagofragnan.commands.arena());
         this.getCommand("distance").setExecutor(new br.com.iagofragnan.commands.distance());
@@ -83,6 +88,8 @@ public class main extends JavaPlugin implements Listener {
         this.getCommand("sb").setExecutor(new br.com.iagofragnan.commands.sb());
         this.getCommand("ranking").setExecutor(new br.com.iagofragnan.commands.ranking());
         this.getCommand("api").setExecutor(new br.com.iagofragnan.commands.api());
+
+
     }
     @EventHandler
     public void onLoad(){
@@ -98,6 +105,7 @@ public class main extends JavaPlugin implements Listener {
         config.addDefault("mysql.port", 3306);
         config.addDefault("mysql.database", "N3rdyTesouro");
         config.addDefault("mysql.table", "Jogadores");
+        config.addDefault("ranking.coords", "0,0,0");
         config.options().copyDefaults(true);
         saveConfig();
 

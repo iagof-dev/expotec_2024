@@ -33,6 +33,7 @@ public class pattern implements Listener {
                 sb.createScoreboard(e.getPlayer(), br.com.iagofragnan.models.scoreboard.states.Idle);
             }
         }.runTaskLater(br.com.iagofragnan.main.getThePlugin(), 20L);
+
         player.setWorld(e.getPlayer().getWorld());
         e.getPlayer().getInventory().clear();
         e.getPlayer().setGameMode(GameMode.SURVIVAL);
@@ -40,6 +41,9 @@ public class pattern implements Listener {
         e.setJoinMessage("");
         e.getPlayer().getInventory().clear();
         e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 0, 67, 0, 0, 0));
+
+        br.com.iagofragnan.controller.hologram hl = new br.com.iagofragnan.controller.hologram();
+        hl.createRanking();
 
     }
 

@@ -21,20 +21,21 @@ public class hologram {
         if(DHAPI.getHologram("ranking") != null)
         {
             rankingHologram = DHAPI.getHologram("ranking");
+            updateRanking();
+            return;
         }
     }
 
     public void createRanking(){
         if(DHAPI.getHologram("ranking") != null)
         {
+            rankingHologram = DHAPI.getHologram("ranking");
             updateRanking();
             return;
         }
-
-        DHAPI.createHologram("ranking", new Location(br.com.iagofragnan.models.player.getWorld(),0, 75, 0), false);
+        DHAPI.createHologram("ranking", new Location(br.com.iagofragnan.models.player.getWorld(),-3, 70, -10), false);
         rankingHologram = DHAPI.getHologram("ranking");
         DHAPI.addHologramLine(rankingHologram, ChatColor.GREEN + "Lista dos Melhores Jogadores");
-
 
         api api = new api();
         String result = api.getRanking();
