@@ -52,3 +52,5 @@ mysql:
 * [ProtocolLib](https://github.com/dmulloy2/ProtocolLib)
 
 * [Images](https://github.com/Andavin/Images)
+
+* [FastBoard](https://github.com/MrMicky-FR/FastBoard)
