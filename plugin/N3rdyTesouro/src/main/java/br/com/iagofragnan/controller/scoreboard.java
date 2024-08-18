@@ -53,14 +53,17 @@ public class scoreboard {
 
         api api = new api();
 
+        String topOneName = api.getTopOne()[0];
+
         board_idle.updateLines(
                 "Ca\u00e7a ao Tesouro",
                 "",
                 "Melhor Tempo:",
-                ChatColor.GOLD + api.getTopOne()[0] + ChatColor.WHITE + " - " + api.getTopOne()[1],
+                ChatColor.GOLD + topOneName + ChatColor.WHITE + " - " + api.getTopOne()[1],
                 "",
                 ChatColor.GRAY + "iagofragnan.com.br"
         );
+        br.com.iagofragnan.settings.ranking.setTopOneName(topOneName);
     }
 
     private void createPlayingScoreboard(Player p) {
@@ -74,9 +77,9 @@ public class scoreboard {
                 "Ca\u00e7a ao Tesouro",
                 "",
                 "Melhor Tempo:",
-                ChatColor.GOLD + "N3rdyDev" + ChatColor.WHITE + " - 00:00:00",
+                ChatColor.GOLD + br.com.iagofragnan.settings.ranking.getTopOneName() + ChatColor.WHITE + " - 00:00:00",
                 "",
-                ChatColor.GREEN + "Seu Tempo: 0:00:00.00",
+                ChatColor.WHITE + "Seu Tempo: " + ChatColor.GREEN + "0:00:00.00",
                 "",
                 ChatColor.GRAY + "iagofragnan.com.br"
 
@@ -113,9 +116,9 @@ public class scoreboard {
                     "Ca\u00e7a ao Tesouro",
                     "",
                     "Melhor Tempo:",
-                    ChatColor.GOLD + "N3rdyDev" + ChatColor.WHITE + " - 00:00:00",
+                    ChatColor.GOLD + br.com.iagofragnan.settings.ranking.getTopOneName() + ChatColor.WHITE + " - 00:00:00",
                     "",
-                    ChatColor.GREEN + "Seu Tempo: " + value,
+                    ChatColor.WHITE + "Seu Tempo: " + ChatColor.GREEN + value,
                     "",
                     ChatColor.GRAY + "iagofragnan.com.br"
 

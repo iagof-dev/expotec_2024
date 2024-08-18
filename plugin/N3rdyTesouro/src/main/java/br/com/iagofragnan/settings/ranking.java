@@ -11,4 +11,14 @@ public class ranking {
     }
 
     public static String coords;
+
+    public static String getTopOneName() {
+        return topOneName;
+    }
+
+    public static void setTopOneName(String value) {
+        topOneName = value;
+    }
+
+    public static String topOneName;
 }
