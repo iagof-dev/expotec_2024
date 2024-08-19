@@ -19,7 +19,7 @@ Router::get('/expotec2024_n3rdy/listar', function() {
 });
 Router::get('/expotec2024_n3rdy/listar/ranking', function() {
     $database = new db();
-    $result = $database->query('SELECT * FROM players order by time_per_round asc;');
+    $result = $database->query('SELECT * FROM players ORDER BY time_per_round ASC LIMIT 10;');
     echo(json_encode($result));
     die();
 });
