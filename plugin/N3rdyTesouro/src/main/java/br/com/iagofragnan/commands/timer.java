@@ -1,5 +1,6 @@
 package br.com.iagofragnan.commands;
 
+import br.com.iagofragnan.controller.api;
 import br.com.iagofragnan.models.player;
 import br.com.iagofragnan.models.scoreboard;
 import de.rapha149.signgui.SignGUI;
@@ -65,6 +66,12 @@ public class timer implements CommandExecutor {
             String value = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
 
             p.sendMessage("Valor Calculado: " + value);
+        }
+        else if(args[0].equals("max")){
+            br.com.iagofragnan.controller.api api = new api();
+            api.getMaximumTime();
+
+            p.sendMessage("Tempo máximo: " + br.com.iagofragnan.settings.ranking.getMaximumTime());
         }
         else{
             p.sendMessage(ChatColor.RED + "Erro!");

@@ -90,6 +90,7 @@ public class main extends JavaPlugin implements Listener {
         this.getCommand("api").setExecutor(new br.com.iagofragnan.commands.api());
 
 
+
     }
     @EventHandler
     public void onLoad(){

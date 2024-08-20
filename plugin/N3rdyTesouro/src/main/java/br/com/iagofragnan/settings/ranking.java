@@ -21,4 +21,15 @@ public class ranking {
     }
 
     public static String topOneName;
+
+    public static String getMaximumTime() {
+        return maximumTime;
+    }
+
+    public static void setMaximumTime(String value) {
+        maximumTime = value;
+    }
+
+    public static String maximumTime;
+
 }

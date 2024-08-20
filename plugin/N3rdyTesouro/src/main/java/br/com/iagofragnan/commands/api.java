@@ -21,9 +21,6 @@ public class api implements CommandExecutor {
             case "inserir":
                 api.insertOnRanking(args[1], args[2], args[3]);
                 break;
-            case "rankingtop1":
-
-                break;
         }
         return true;
     }

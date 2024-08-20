@@ -10,6 +10,8 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.*;
 
 public class api {
@@ -39,6 +41,32 @@ public class api {
         return result;
     }
 
+    public String getMaximumTime(){
+
+        String response = getRanking();
+        if (response == null || response.isEmpty()) {
+            throw new IllegalStateException("Resposta invalida ou nula da API");
+        }
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<HashMap<String, Object>>(){}.getType();
+        HashMap<String, Object> resultMap = gson.fromJson(response, type);
+        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+        List<Map<String, Object>> dataList = gson.fromJson(gson.toJson(resultMap.get("DATA")), listType);
+        Duration totalDuration = Duration.ZERO;
+        for (Map<String, Object> data : dataList) {
+            Duration duration = Duration.between(LocalTime.MIN, LocalTime.parse(data.get("time_per_game").toString()));
+            totalDuration = totalDuration.plus(duration);
+        }
+        long hours = totalDuration.toHours();
+        long minutes = totalDuration.toMinutesPart();
+        long seconds = totalDuration.toSecondsPart();
+        long millis = totalDuration.toMillisPart();
+        String formattedTime = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, millis);
+        br.com.iagofragnan.settings.ranking.setMaximumTime(formattedTime);
+        return formattedTime;
+    }
+
     public void insertOnRanking(String name, String time_per_round, String time_per_game){
         Map<String, String> data = new LinkedHashMap<>();
         data.put("name", name);
@@ -46,8 +74,5 @@ public class api {
         data.put("time_per_game", time_per_game);
         api.makePostRequest("/inserir/", data);
     }
-
-
-
 
 }

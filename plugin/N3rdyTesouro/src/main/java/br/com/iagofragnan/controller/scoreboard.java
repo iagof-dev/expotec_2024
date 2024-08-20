@@ -2,11 +2,13 @@ package br.com.iagofragnan.controller;
 
 import br.com.iagofragnan.models.timer;
 import fr.mrmicky.fastboard.FastBoard;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import static br.com.iagofragnan.models.scoreboard.*;
 
@@ -123,6 +125,17 @@ public class scoreboard {
                     ChatColor.GRAY + "iagofragnan.com.br"
 
             );
+
+            String maximumTime = br.com.iagofragnan.settings.ranking.getMaximumTime();
+
+            LocalTime actualTime = LocalTime.parse(value, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
+            LocalTime formattedLocalTime = LocalTime.parse(maximumTime, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
+
+            if (!formattedLocalTime.isBefore(actualTime)) {
+                br.com.iagofragnan.controller.game.end();
+                Bukkit.getConsoleSender().sendMessage("Jogador passou do tempo limite.");
+                return;
+            }
 
         }
 
