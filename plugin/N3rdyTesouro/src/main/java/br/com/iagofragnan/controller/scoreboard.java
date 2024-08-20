@@ -128,9 +128,11 @@ public class scoreboard {
 
             String maximumTime = br.com.iagofragnan.settings.ranking.getMaximumTime();
 
+
+            //    ERRO ABAIXO
             LocalTime actualTime = LocalTime.parse(value, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
             LocalTime formattedLocalTime = LocalTime.parse(maximumTime, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
-
+            //    ERRO ACIMA
             if (!formattedLocalTime.isBefore(actualTime)) {
                 br.com.iagofragnan.controller.game.end();
                 Bukkit.getConsoleSender().sendMessage("Jogador passou do tempo limite.");
