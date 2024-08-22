@@ -8,7 +8,6 @@ import br.com.iagofragnan.events.treasure;
 import br.com.iagofragnan.models.arduino;
 import br.com.iagofragnan.settings.api;
 import br.com.iagofragnan.settings.mysql;
-import com.comphenix.protocol.ProtocolLibrary;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
