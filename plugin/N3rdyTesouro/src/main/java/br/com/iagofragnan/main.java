@@ -95,7 +95,6 @@ public class main extends JavaPlugin implements Listener {
     @EventHandler
     public void onLoad(){
         Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "N3rdyTesouro | Carregando configura\u00e7\u00d5es...");
-        br.com.iagofragnan.models.protocollib.setProtocolManager(ProtocolLibrary.getProtocolManager());
         config.addDefault("arduino.port", "COM1");
         config.addDefault("api.enable", false);
         config.addDefault("api.url", "localhost:3000");
