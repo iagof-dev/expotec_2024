@@ -22,6 +22,7 @@ public class game {
         Player p = player.getPlayerObj();
         hologram hl = new hologram();
         hl.updateRanking();
+
         p.sendTitle("Ca\u00e7a ao Tesouro", ChatColor.GRAY+"Feito por Iago Fragnan", 20, 50, 20);
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(br.com.iagofragnan.main.getThePlugin(), new Runnable() {

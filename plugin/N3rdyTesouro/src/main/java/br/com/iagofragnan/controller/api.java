@@ -34,8 +34,12 @@ public class api {
         List<Map<String, Object>> dataList = gson.fromJson(gson.toJson(resultMap.get("DATA")), listType);
         String[] result = new String[2];
         for (Map<String, Object> data : dataList) {
-            result[0] = data.get("name").toString();
-            result[1] = data.get("time_per_game").toString();
+            String name = data.get("name").toString();
+            if (name.length() > 10) {
+                name = name.substring(0, 7) + "...";
+            }
+            result[0] = name;
+            result[1] = data.get("time_per_round").toString();
         }
 
         return result;

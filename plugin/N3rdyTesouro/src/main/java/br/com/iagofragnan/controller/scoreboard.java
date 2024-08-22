@@ -126,18 +126,31 @@ public class scoreboard {
 
             );
 
-            String maximumTime = br.com.iagofragnan.settings.ranking.getMaximumTime();
 
 
+<<<<<<< HEAD
             //    ERRO ABAIXO
             LocalTime actualTime = LocalTime.parse(value, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
             LocalTime formattedLocalTime = LocalTime.parse(maximumTime, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
             //    ERRO ACIMA
             if (!formattedLocalTime.isBefore(actualTime)) {
-                br.com.iagofragnan.controller.game.end();
-                Bukkit.getConsoleSender().sendMessage("Jogador passou do tempo limite.");
+=======
+            // maximumTime = "00:00:13.780"
+            String maximumTime = br.com.iagofragnan.settings.ranking.getMaximumTime();
+            if (maximumTime == null && maximumTime.isEmpty()) {
                 return;
             }
+            LocalTime actualTime = LocalTime.parse(value, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
+            LocalTime formattedLocalTime = LocalTime.parse(maximumTime, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
+
+
+            if (actualTime.isAfter(formattedLocalTime)) {
+>>>>>>> 429e5f4 (fix: maximumTime not calculating)
+                br.com.iagofragnan.controller.game.end();
+                br.com.iagofragnan.models.player.getPlayerObj().sendTitle(ChatColor.RED + "Tempo esgotado!", ChatColor.WHITE + "Seu tempo esgotou.");
+                return;
+            }
+
 
         }
 

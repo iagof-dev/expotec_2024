@@ -20,7 +20,7 @@ public class arduino {
         boolean result = porta.openPort();
         if (result){
             SerialOut = porta.getOutputStream();
-            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "ARDUINO | Porta conex\u00e3o estabilizada ("+ PortCOM +").");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "ARDUINO | Conex\u00e3o estabilizada ("+ PortCOM +").");
             isWorking = true;
         }
         else

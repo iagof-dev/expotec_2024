@@ -19,7 +19,6 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT") //Minecraft Plugin SDK API
-    compileOnly("com.comphenix.protocol:ProtocolLib:5.1.0") // Protocol LIB api for minecraft
     compileOnly("com.github.decentsoftware-eu:decentholograms:2.8.6") // Hologram api for minecraft
     implementation("com.fazecast:jSerialComm:2.6.2") // Communication on Serial Port
     implementation("de.rapha149.signgui:signgui:2.3.2") // Sign GUI for typing the name

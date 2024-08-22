@@ -34,6 +34,7 @@ public class pattern implements Listener {
             }
         }.runTaskLater(br.com.iagofragnan.main.getThePlugin(), 20L);
 
+        br.com.iagofragnan.settings.ranking.getMaximumTime();
         player.setWorld(e.getPlayer().getWorld());
         e.getPlayer().getInventory().clear();
         e.getPlayer().setGameMode(GameMode.SURVIVAL);

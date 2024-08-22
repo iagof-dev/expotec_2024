@@ -49,7 +49,7 @@ public class hologram {
         Integer pos = 1;
         for (Map<String, Object> data : dataList) {
             String key = data.get("name").toString();
-            String value = data.get("time_per_game").toString();
+            String value = data.get("time_per_round").toString();
             DHAPI.addHologramLine(rankingHologram, ChatColor.GREEN + "" + pos + ". " + ChatColor.WHITE + key + ChatColor.GRAY + " | " + ChatColor.WHITE + value);
             pos++;
         }
