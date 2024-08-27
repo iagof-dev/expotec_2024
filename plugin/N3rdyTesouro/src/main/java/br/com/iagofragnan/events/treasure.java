@@ -29,6 +29,8 @@ public class treasure implements Listener {
 
         if(!(e.getAction() == Action.RIGHT_CLICK_BLOCK) || !(e.getAction() == Action.LEFT_CLICK_BLOCK) && !(e.getClickedBlock().getType() == Material.CHEST)) return;
 
+        if(!br.com.iagofragnan.controller.game.isPlaying()) return;
+
         if(isFound) return;
 
         setIsFound(true);
@@ -37,18 +39,7 @@ public class treasure implements Listener {
 
         Location loc = new Location(p.getWorld(), e.getClickedBlock().getX(), e.getClickedBlock().getY() + 1, e.getClickedBlock().getZ());
 
-        Duration duration = Duration.between(LocalTime.now(), timer.getStartTime());
-        long totalSeconds = duration.getSeconds();
-        long hours = totalSeconds / 3600;
-        long minutes = (totalSeconds % 3600) / 60;
-        long seconds = totalSeconds % 60;
-        int nanos = duration.getNano();
-        int milliseconds = nanos / 1000000;
-
-        String value = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
-
-
-        p.sendTitle(ChatColor.GREEN + "BOA!", "Voc\u00ea encontrou o ba\u00fa! ("+ value +")", 10, 30, 10);
+        p.sendTitle(ChatColor.GREEN + "BOA!", "Voc\u00ea encontrou o ba\u00fa!", 10, 30, 10);
         e.getPlayer().playSound(p.getLocation(), Sound.BLOCK_NOTE_HARP, 1f, 1f);
         p.spawnParticle(Particle.VILLAGER_HAPPY, loc, 10);
 

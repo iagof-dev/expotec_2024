@@ -126,15 +126,6 @@ public class scoreboard {
 
             );
 
-
-
-<<<<<<< HEAD
-            //    ERRO ABAIXO
-            LocalTime actualTime = LocalTime.parse(value, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
-            LocalTime formattedLocalTime = LocalTime.parse(maximumTime, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
-            //    ERRO ACIMA
-            if (!formattedLocalTime.isBefore(actualTime)) {
-=======
             // maximumTime = "00:00:13.780"
             String maximumTime = br.com.iagofragnan.settings.ranking.getMaximumTime();
             if (maximumTime == null && maximumTime.isEmpty()) {
@@ -145,7 +136,6 @@ public class scoreboard {
 
 
             if (actualTime.isAfter(formattedLocalTime)) {
->>>>>>> 429e5f4 (fix: maximumTime not calculating)
                 br.com.iagofragnan.controller.game.end();
                 br.com.iagofragnan.models.player.getPlayerObj().sendTitle(ChatColor.RED + "Tempo esgotado!", ChatColor.WHITE + "Seu tempo esgotou.");
                 return;
