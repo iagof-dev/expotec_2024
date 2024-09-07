@@ -39,6 +39,7 @@ public class game {
         player.getPlayerObj().teleport(spawn);
         timer.setEndTime(LocalTime.now());
         setIsRunning(false);
+        br.com.iagofragnan.models.arduino.SendSignal("D");
         mysql.registerTime(player.getPlayerName(), getRounds(),timer.getStartTime(), timer.getEndTime());
         player.setPlayerName(null);
         player.setSetupNameFinished(false);

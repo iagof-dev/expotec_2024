@@ -128,7 +128,9 @@ public class scoreboard {
 
             // maximumTime = "00:00:13.780"
             String maximumTime = br.com.iagofragnan.settings.ranking.getMaximumTime();
-            if (maximumTime == null && maximumTime.isEmpty()) {
+            if (maximumTime == null || maximumTime.isEmpty()) {
+                br.com.iagofragnan.controller.api api = new api();
+                api.getMaximumTime();
                 return;
             }
             LocalTime actualTime = LocalTime.parse(value, DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
