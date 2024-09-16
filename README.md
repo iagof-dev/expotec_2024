@@ -43,7 +43,7 @@ mysql:
 
 ## Librarys/Frameworks Used:
 
-* [Spigot (Minecraft Server)](https://www.spigotmc.org/wiki/spigot-plugin-development/)
+* [Spigot (NMS/Minecraft Server)](https://www.spigotmc.org/wiki/spigot-plugin-development/)
 
 * [DecentHolograms](https://github.com/DecentSoftware-eu/DecentHolograms)
 
