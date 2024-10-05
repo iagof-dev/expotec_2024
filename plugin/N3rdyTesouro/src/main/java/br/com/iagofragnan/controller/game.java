@@ -35,7 +35,7 @@ public class game {
         game.setPlaying(false);
         br.com.iagofragnan.models.arena.DeleteLastArena();
         br.com.iagofragnan.models.player.setSetupNameFinished(false);
-        Location spawn = new Location(player.getWorld(), 0, 66, 0);
+        Location spawn = new Location(player.getWorld(), 0, 69, 0);
         player.getPlayerObj().teleport(spawn);
         timer.setEndTime(LocalTime.now());
         setIsRunning(false);
