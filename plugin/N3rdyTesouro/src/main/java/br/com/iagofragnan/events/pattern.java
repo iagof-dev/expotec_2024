@@ -41,7 +41,7 @@ public class pattern implements Listener {
         e.getPlayer().setFoodLevel(100);
         e.setJoinMessage("");
         e.getPlayer().getInventory().clear();
-        e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 0, 67, 0, 0, 0));
+        e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 0, 69, 0, 0, 0));
 
         br.com.iagofragnan.controller.hologram hl = new br.com.iagofragnan.controller.hologram();
         hl.createRanking();
