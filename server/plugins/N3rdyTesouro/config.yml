@@ -1,0 +1,15 @@
+arduino:
+  port: COM1
+api:
+  enable: false
+  url: http://localhost:80/
+mysql:
+  enable: false
+  address: 127.0.0.1
+  user: root
+  pass: '123'
+  port: 3306
+  database: N3rdyTesouro
+  table: Jogadores
+ranking:
+  coords: 0,0,0

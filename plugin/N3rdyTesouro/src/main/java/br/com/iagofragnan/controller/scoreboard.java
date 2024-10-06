@@ -63,7 +63,7 @@ public class scoreboard {
                 "Melhor Tempo:",
                 ChatColor.GOLD + topOneName + ChatColor.WHITE + " - " + api.getTopOne()[1],
                 "",
-                ChatColor.GRAY + "iagofragnan.com.br"
+                ChatColor.GRAY + "github.com/iagof-dev"
         );
         br.com.iagofragnan.settings.ranking.setTopOneName(topOneName);
     }
@@ -83,7 +83,7 @@ public class scoreboard {
                 "",
                 ChatColor.WHITE + "Seu Tempo: " + ChatColor.GREEN + "0:00:00.00",
                 "",
-                ChatColor.GRAY + "iagofragnan.com.br"
+                ChatColor.GRAY + "github.com/iagof-dev"
 
         );
     }
@@ -122,7 +122,7 @@ public class scoreboard {
                     "",
                     ChatColor.WHITE + "Seu Tempo: " + ChatColor.GREEN + value,
                     "",
-                    ChatColor.GRAY + "iagofragnan.com.br"
+                    ChatColor.GRAY + "github.com/iagof-dev"
 
             );
 
