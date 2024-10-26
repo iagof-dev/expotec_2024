@@ -1,5 +1,7 @@
 ## Expotec 2024
 
+[![wakatime](https://wakatime.com/badge/user/018e1f5e-85ee-4d1b-9e0e-ed450cf40324/project/018eab55-09b9-4255-b234-bf2df9b23354.svg)](https://wakatime.com/badge/user/018e1f5e-85ee-4d1b-9e0e-ed450cf40324/project/018eab55-09b9-4255-b234-bf2df9b23354)
+
 ### Ideia:
 Criar um minijogo de "caça ao tesouro" no jogo Minecraft envolvendo Arduino, mostrando led se está perto.
 
