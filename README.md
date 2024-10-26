@@ -10,7 +10,7 @@ e tera um texto em cima dizendo ("Digite seu nome para entrar no ranking")
 e uma seta insinuando para clicar no item após renomear, após isso.
 Será dado o item de uma PÁ para o jogador no inicio, o jogador será teleportado pra uma mini arena (40x40), o jogador deverá usar os leds do arduino como uma bússula e terá o objetivo cavar e de encontrar o baú (tesouro)
 que ao encontrar a arena será resetada, baú será definido e outra região
-O Jogador terá que bater o recorde dos jogadores na lista do ranking, não podendo passar do tempo máximo. (30° jogador da lista do ranking)
+O Jogador terá que bater o recorde dos jogadores na lista do ranking, não podendo passar do tempo máximo. (os 10 primeiros jogadores da lista do ranking)
 
 Arduino possuindo 3 leds, vermelho, laranja e verde
 vermelho: longe
