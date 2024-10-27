@@ -9,10 +9,10 @@ class db{
 
     function __construct()
     {
-        $this->host = 'marciossupiais.shop';
+        $this->host = 'localhost';
         $this->port = '3306';
-        $this->user = 'n3rdydev';
-        $this->pass = 'N3rdygamerbr@123';
+        $this->user = 'root';
+        $this->pass = '';
     }
 
     function getConnection(){
