@@ -42,6 +42,10 @@ mysql:
 
 ```
 
+## Problemas
+
+- Quando a opção API está desativada, as funções dela continuam sendo rodadas
+
 
 ## Librarys/Frameworks Used:
 
