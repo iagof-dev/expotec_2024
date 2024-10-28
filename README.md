@@ -44,7 +44,9 @@ mysql:
 
 ## Problemas
 
-- Quando a opção API está desativada, as funções dela continuam sendo rodadas
+- Quando a opção API está desativada, as funções dela continuam sendo rodadas. (Ou seja API sendo obrigatória)
+
+- Parte do calculo e consultas da API não estão 100% controladas, então ser der erro o plugin para de funcionar inteiro
 
 
 ## Librarys/Frameworks Used:
