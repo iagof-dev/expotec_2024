@@ -3,11 +3,11 @@
 [![wakatime](https://wakatime.com/badge/user/018e1f5e-85ee-4d1b-9e0e-ed450cf40324/project/018eab55-09b9-4255-b234-bf2df9b23354.svg)](https://wakatime.com/badge/user/018e1f5e-85ee-4d1b-9e0e-ed450cf40324/project/018eab55-09b9-4255-b234-bf2df9b23354)
 
 ### Ideia:
-Criar um minijogo de "caça ao tesouro" no jogo Minecraft envolvendo Arduino, mostrando led se está perto.
+Criar um modo de jogo de "caça ao tesouro" no jogo Minecraft envolvendo Arduino, mostrando led se está perto.
 
-No inicio abrirá a página de edição de itens da bigorna
-e tera um texto em cima dizendo ("Digite seu nome para entrar no ranking")
-e uma seta insinuando para clicar no item após renomear, após isso.
+No inicio abrirá a página de edição ~~de itens da bigorna~~ de texto da placa
+e terá um texto em cima dizendo ("Digite seu nome para entrar no ranking")
+~~e uma seta insinuando para clicar no item após renomear, após isso.~~
 Será dado o item de uma PÁ para o jogador no inicio, o jogador será teleportado pra uma mini arena (40x40), o jogador deverá usar os leds do arduino como uma bússula e terá o objetivo cavar e de encontrar o baú (tesouro)
 que ao encontrar a arena será resetada, baú será definido e outra região
 O Jogador terá que bater o recorde dos jogadores na lista do ranking, não podendo passar do tempo máximo. (os 10 primeiros jogadores da lista do ranking)
